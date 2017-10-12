@@ -1,5 +1,5 @@
 {
-    "name": "Apache HTTP Server full deployment on a single VM - VMware vSphere",
+    "name": "Apache HTTP Server full deployment on a single virtual machine - VMware vSphere",
     "description": "This template deploys Apache HTTP Server with a full configuration on a single Linux node including virtual host conf and enables SSL support.",
     "version": "1.0",
     "imageUrl": "",
@@ -23,7 +23,7 @@
       }
     },
     "metadata": {
-      "displayName": "Apache HTTP Server full deployment on a single VM",
+      "displayName": "Apache HTTP Server full deployment on a single virtual machine",
       "providerDisplayName": "VMware vSphere",
       "longDescription": "This template deploys Apache HTTP Server with a full configuration on a single Linux node including virtual host conf and enables SSL support.",
       "bullets": [{
@@ -34,7 +34,7 @@
     "description": "1.0<br>"},
 {
     "title": "Operating Systems Supported",
-    "description": "Red Hat Enterprise Linux 7<br>Red Hat Enterprise Linux 6<br>Ubuntu 16.04 LTS<br>Ubuntu 14.04 LTS<br>"},
+    "description": "Red Hat Enterprise Linux 7<br>Ubuntu 16.04 LTS<br>"},
 {
     "title": "Topology",
     "description": "1 virtual machine:<br>  httpd service instance with SSL enabled<br>"},

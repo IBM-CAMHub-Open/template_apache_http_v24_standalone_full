@@ -276,7 +276,7 @@ variable "HttpdNode01_httpd_virtualhosts_default_http_server_error_log" {
 #Variable : HttpdNode01_httpd_virtualhosts_default_http_server_global_ssl_config
 variable "HttpdNode01_httpd_virtualhosts_default_http_server_global_ssl_config" {
   type        = "string"
-  description = "Use default global configuration for HTTPs communication in HTTP server"
+  description = "Use default global configuration for HTTPS communication in HTTP server"
   default     = "true"
 }
 
@@ -402,6 +402,11 @@ variable "HttpdNode01_httpd_virtualhosts_default_https_server_vhost_type" {
 #########################################################
 ##### Resource : HttpdNode01
 #########################################################
+
+variable "HttpdNode01_domain" {
+  type = "string"
+  description = "Domain Name of virtual machine"
+}
 
 variable "HttpdNode01-os_password" {
   type        = "string"

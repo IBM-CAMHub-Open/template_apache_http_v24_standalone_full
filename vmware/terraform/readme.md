@@ -1,4 +1,4 @@
-# Template - Apache HTTP Server full deployment on a single VM
+# Template - Apache HTTP Server full deployment on a single virtual machine
 Template Version - 1.0
 
 ## Description
@@ -18,9 +18,7 @@ This template deploys Apache HTTP Server with a full configuration on a single L
 ### Operating Systems Supported
 
 Red Hat Enterprise Linux 7<br>
-Red Hat Enterprise Linux 6<br>
 Ubuntu 16.04 LTS<br>
-Ubuntu 14.04 LTS<br>
 <br>
 ### Topology
 

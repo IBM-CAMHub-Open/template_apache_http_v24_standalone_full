@@ -259,6 +259,17 @@
       "group_name": "virtualmachine"
     },
     {
+      "name": "HttpdNode01_domain",
+      "type": "string",
+      "description": "Domain Name of virtual machine",
+      "hidden": false,
+      "label": "Domain Name - HttpdNode01",
+      "secured": false,
+      "required": true,
+      "immutable": false,
+      "group_name": "virtualmachine"
+    },
+    {
       "name": "HttpdNode01_httpd_php_mod_enabled",
       "type": "string",
       "description": "Enable PHP in Apache on Linux by Loading the Module",
@@ -318,10 +329,10 @@
     {
       "name": "HttpdNode01_httpd_virtualhosts_default_http_server_ssl_enabled",
       "type": "string",
-      "description": "Enable SSL for virtual host for HTTP communication in HTTP server",
+      "description": "Enable SSL for virtual host for HTTPS communication in HTTP server",
       "default": "false",
       "hidden": false,
-      "label": "Enable SSL for Virtual Host for HTTPs Communication - HttpdNode01",
+      "label": "Enable SSL for Virtual Host for HTTPS Communication - HttpdNode01",
       "secured": false,
       "required": true,
       "immutable": false,
@@ -783,10 +794,10 @@
     {
       "name": "HttpdNode01_httpd_virtualhosts_default_http_server_global_ssl_config",
       "type": "string",
-      "description": "Use default global configuration for HTTPs communication in HTTP server",
+      "description": "Use default global configuration for HTTPS communication in HTTP server",
       "default": "true",
       "hidden": false,
-      "label": "Use Default Global Configuration for HTTPs Communication - HttpdNode01",
+      "label": "Use Default Global Configuration for HTTPS Communication - HttpdNode01",
       "secured": false,
       "required": true,
       "immutable": false,
