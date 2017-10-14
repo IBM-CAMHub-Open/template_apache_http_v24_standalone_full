@@ -3,7 +3,7 @@ Template Version - 1.0
 
 ## Description
 
-This template deploys Apache HTTP Server with a full configuration on a single Linux node including virtual host conf and enables SSL support.<br>
+This template deploys Apache HTTP Server with a full configuration on a Linux virtual machine including virtual host conf and enables SSL support.<br>
 
 ## Features
 
@@ -27,7 +27,7 @@ Ubuntu 16.04 LTS<br>
 <br>
 ### Software Deployed
 
-Apache HTTP Server 2.4<br>
+Apache HTTP Server V2.4<br>
 <br>
 ### Default Virtual Machine Settings
 

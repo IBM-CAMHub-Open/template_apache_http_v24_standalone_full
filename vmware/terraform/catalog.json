@@ -1,6 +1,6 @@
 {
     "name": "Apache HTTP Server full deployment on a single virtual machine - VMware vSphere",
-    "description": "This template deploys Apache HTTP Server with a full configuration on a single Linux node including virtual host conf and enables SSL support.",
+    "description": "This template deploys Apache HTTP Server with a full configuration on a Linux virtual machine including virtual host conf and enables SSL support.",
     "version": "1.0",
     "imageUrl": "",
     "image": "",
@@ -25,7 +25,7 @@
     "metadata": {
       "displayName": "Apache HTTP Server full deployment on a single virtual machine",
       "providerDisplayName": "VMware vSphere",
-      "longDescription": "This template deploys Apache HTTP Server with a full configuration on a single Linux node including virtual host conf and enables SSL support.",
+      "longDescription": "This template deploys Apache HTTP Server with a full configuration on a Linux virtual machine including virtual host conf and enables SSL support.",
       "bullets": [{
     "title": "Clouds",
     "description": " VMware<br>"},
@@ -40,7 +40,7 @@
     "description": "1 virtual machine:<br>  httpd service instance with SSL enabled<br>"},
 {
     "title": "Software Deployed",
-    "description": "Apache HTTP Server 2.4<br>"},
+    "description": "Apache HTTP Server V2.4<br>"},
 {
     "title": "Default Virtual Machine Settings",
     "description": " vCPU 2, Memory (GB) 2<br>"},
