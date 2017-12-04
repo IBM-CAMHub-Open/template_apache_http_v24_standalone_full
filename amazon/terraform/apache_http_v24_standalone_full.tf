@@ -11,31 +11,35 @@
 ##############################################################
 # Keys - CAMC (public/private) & optional User Key (public)
 ##############################################################
-variable "user_public_ssh_key" {
-  type        = "string"
-  description = "User defined public SSH key used to connect to the virtual machine. The format must be in openSSH."
-  default     = "None"
-}
-
-variable "ibm_pm_public_ssh_key" {
-  description = "Public CAMC SSH key value which is used to connect to a guest, used on VMware only."
+variable "ibm_pm_public_ssh_key_name" {
+  description = "Public CAMC SSH key name used to connect to the virtual guest."
 }
 
 variable "ibm_pm_private_ssh_key" {
   description = "Private CAMC SSH key (base64 encoded) used to connect to the virtual guest."
 }
 
-variable "allow_unverified_ssl" {
-  description = "Communication with vsphere server with self signed certificate"
-  default     = "true"
+variable "user_public_ssh_key" {
+  type        = "string"
+  description = "User defined public SSH key used to connect to the virtual machine. The format must be in openSSH."
+  default     = "None"
+}
+
+variable "aws_ami_owner_id" {
+  description = "The AMI Owner ID"
+  default     = "309956199498"
+}
+
+variable "aws_region" {
+  description = "The aws region"
 }
 
 ##############################################################
-# Define the vsphere provider
+# Define the aws provider
 ##############################################################
-provider "vsphere" {
-  allow_unverified_ssl = "${var.allow_unverified_ssl}"
-  version = "~> 0.4"
+provider "aws" {
+  region = "${var.aws_region}"
+  version = "~> 1.2"
 }
 
 provider "camc" {
@@ -44,6 +48,28 @@ provider "camc" {
 
 provider "random" {
   version = "~> 1.0"
+}
+
+data "aws_vpc" "selected_vpc" {
+  filter {
+    name   = "tag:Name"
+    values = ["${var.aws_vpc_name}"]
+  }
+}
+
+#Parameter : aws_vpc_name
+variable "aws_vpc_name" {
+  description = "The name of the aws vpc"
+}
+
+data "aws_security_group" "aws_sg_camc_name_selected" {
+  name   = "${var.aws_sg_camc_name}"
+  vpc_id = "${data.aws_vpc.selected_vpc.id}"
+}
+
+#Parameter : aws_sg_camc_name
+variable "aws_sg_camc_name" {
+  description = "The name of the aws security group for automation content"
 }
 
 resource "random_id" "stack_id" {
@@ -59,6 +85,15 @@ variable "ibm_stack_name" {
 }
 
 #### Default OS Admin User Map ####
+variable "default_os_admin_user" {
+  type        = "map"
+  description = "look up os_admin_user using resource image"
+
+  default = {
+    ubuntu_images_ubuntu_xenial-16.04_099720109477 = "ubuntu"
+    RHEL-7.4_HVM_GA_309956199498                   = "ec2-user"
+  }
+}
 
 ##### Environment variables #####
 #Variable : ibm_pm_access_token
@@ -93,10 +128,36 @@ variable "ibm_sw_repo_user" {
 }
 
 ##### HttpdNode01 variables #####
+#Variable : HttpdNode01-flavor
+variable "HttpdNode01-flavor" {
+  type        = "string"
+  description = "HttpdNode01 Flavor"
+  default     = "t2.small"
+}
+
+data "aws_ami" "HttpdNode01_ami" {
+  most_recent = true
+
+  filter {
+    name   = "name"
+    values = ["${var.HttpdNode01-image}*"]
+  }
+
+  owners = ["${var.aws_ami_owner_id}"]
+}
+
 #Variable : HttpdNode01-image
 variable "HttpdNode01-image" {
   type        = "string"
   description = "Operating system image id / template that should be used when creating the virtual image"
+  default     = "RHEL-7.4_HVM_GA"
+}
+
+#Variable : HttpdNode01-mgmt-network-public
+variable "HttpdNode01-mgmt-network-public" {
+  type        = "string"
+  description = "Expose and use public IP of virtual machine for internal communication"
+  default     = "true"
 }
 
 #Variable : HttpdNode01-name
@@ -309,9 +370,9 @@ variable "HttpdNode01_httpd_virtualhosts_default_http_server_server_name" {
 
 #Variable : HttpdNode01_httpd_virtualhosts_default_http_server_ssl_enabled
 variable "HttpdNode01_httpd_virtualhosts_default_http_server_ssl_enabled" {
-  type = "string"
+  type        = "string"
   description = "Enable SSL for virtual host for HTTPS communication in HTTP server"
-  default = "false"
+  default     = "false"
 }
 
 #Variable : HttpdNode01_httpd_virtualhosts_default_http_server_vhost_listen
@@ -412,127 +473,73 @@ variable "HttpdNode01_httpd_virtualhosts_default_https_server_vhost_type" {
   default     = "name_based"
 }
 
+##### domain name #####
+variable "runtime_domain" {
+  description = "domain name"
+  default     = "cam.ibm.com"
+}
+
 #########################################################
 ##### Resource : HttpdNode01
 #########################################################
 
-variable "HttpdNode01-os_password" {
+#Parameter : HttpdNode01_subnet_name
+data "aws_subnet" "HttpdNode01_selected_subnet" {
+  filter {
+    name   = "tag:Name"
+    values = ["${var.HttpdNode01_subnet_name}"]
+  }
+}
+
+variable "HttpdNode01_subnet_name" {
   type        = "string"
-  description = "Operating System Password for the Operating System User to access virtual machine"
+  description = "AWS Subnet Name"
 }
 
-variable "HttpdNode01_folder" {
-  description = "Target vSphere folder for virtual machine"
-}
-
-variable "HttpdNode01_datacenter" {
-  description = "Target vSphere datacenter for virtual machine creation"
-}
-
-variable "HttpdNode01_domain" {
-  description = "Domain Name of virtual machine"
-}
-
-variable "HttpdNode01_number_of_vcpu" {
-  description = "Number of virtual CPU for the virtual machine, which is required to be a positive Integer"
-  default     = "2"
-}
-
-variable "HttpdNode01_memory" {
-  description = "Memory assigned to the virtual machine in megabytes. This value is required to be an increment of 1024"
-  default     = "2048"
-}
-
-variable "HttpdNode01_cluster" {
-  description = "Target vSphere cluster to host the virtual machine"
-}
-
-variable "HttpdNode01_dns_suffixes" {
-  type        = "list"
-  description = "Name resolution suffixes for the virtual network adapter"
-}
-
-variable "HttpdNode01_dns_servers" {
-  type        = "list"
-  description = "DNS servers for the virtual network adapter"
-}
-
-variable "HttpdNode01_network_interface_label" {
-  description = "vSphere port group or network label for virtual machine's vNIC"
-}
-
-variable "HttpdNode01_ipv4_gateway" {
-  description = "IPv4 gateway for vNIC configuration"
-}
-
-variable "HttpdNode01_ipv4_address" {
-  description = "IPv4 address for vNIC configuration"
-}
-
-variable "HttpdNode01_ipv4_prefix_length" {
-  description = "IPv4 prefix length for vNIC configuration. The value must be a number between 8 and 32"
-}
-
-variable "HttpdNode01_adapter_type" {
-  description = "Network adapter type for vNIC Configuration"
-  default = "vmxnet3"
-}
-
-variable "HttpdNode01_root_disk_datastore" {
-  description = "Data store or storage cluster name for target virtual machine's disks"
-}
-
-variable "HttpdNode01_root_disk_type" {
+#Parameter : HttpdNode01_associate_public_ip_address
+variable "HttpdNode01_associate_public_ip_address" {
   type        = "string"
-  description = "Type of template disk volume"
-  default     = "eager_zeroed"
+  description = "Assign a public IP"
+  default     = "true"
 }
 
-variable "HttpdNode01_root_disk_controller_type" {
+#Parameter : HttpdNode01_root_block_device_volume_type
+variable "HttpdNode01_root_block_device_volume_type" {
   type        = "string"
-  description = "Type of template disk controller"
-  default     = "scsi"
+  description = "AWS Root Block Device Volume Type"
+  default     = "gp2"
 }
 
-variable "HttpdNode01_root_disk_keep_on_remove" {
+#Parameter : HttpdNode01_root_block_device_volume_size
+variable "HttpdNode01_root_block_device_volume_size" {
   type        = "string"
-  description = "Delete template disk volume when the virtual machine is deleted"
-  default     = "false"
+  description = "AWS Root Block Device Volume Size"
+  default     = "25"
 }
 
-# vsphere vm
-resource "vsphere_virtual_machine" "HttpdNode01" {
-  name = "${var.HttpdNode01-name}"
-  domain = "${var.HttpdNode01_domain}"
-  folder = "${var.HttpdNode01_folder}"
-  datacenter = "${var.HttpdNode01_datacenter}"
-  vcpu = "${var.HttpdNode01_number_of_vcpu}"
-  memory = "${var.HttpdNode01_memory}"
-  cluster = "${var.HttpdNode01_cluster}"
-  dns_suffixes = "${var.HttpdNode01_dns_suffixes}"
-  dns_servers = "${var.HttpdNode01_dns_servers}"
+#Parameter : HttpdNode01_root_block_device_delete_on_termination
+variable "HttpdNode01_root_block_device_delete_on_termination" {
+  type        = "string"
+  description = "AWS Root Block Device Delete on Termination"
+  default     = "true"
+}
 
-  network_interface {
-    label              = "${var.HttpdNode01_network_interface_label}"
-    ipv4_gateway       = "${var.HttpdNode01_ipv4_gateway}"
-    ipv4_address       = "${var.HttpdNode01_ipv4_address}"
-    ipv4_prefix_length = "${var.HttpdNode01_ipv4_prefix_length}"
-    adapter_type = "${var.HttpdNode01_adapter_type}"
+resource "aws_instance" "HttpdNode01" {
+  ami                         = "${data.aws_ami.HttpdNode01_ami.id}"
+  instance_type               = "${var.HttpdNode01-flavor}"
+  key_name                    = "${var.ibm_pm_public_ssh_key_name}"
+  vpc_security_group_ids      = ["${data.aws_security_group.aws_sg_camc_name_selected.id}"]
+  subnet_id                   = "${data.aws_subnet.HttpdNode01_selected_subnet.id}"
+  associate_public_ip_address = "${var.HttpdNode01_associate_public_ip_address}"
+
+  tags {
+    Name = "${var.HttpdNode01-name}"
   }
 
-  disk {
-    type            = "${var.HttpdNode01_root_disk_type}"
-    template        = "${var.HttpdNode01-image}"
-    datastore       = "${var.HttpdNode01_root_disk_datastore}"
-    keep_on_remove  = "${var.HttpdNode01_root_disk_keep_on_remove}"
-    controller_type = "${var.HttpdNode01_root_disk_controller_type}"
-  }
-
-  # Specify the connection
+  # Specify the ssh connection
   connection {
-    type     = "ssh"
-    user     = "${var.HttpdNode01-os_admin_user}"
-    password = "${var.HttpdNode01-os_password}"
+    user        = "${var.HttpdNode01-os_admin_user == "" ? lookup(var.default_os_admin_user, format("%s_%s", replace(var.HttpdNode01-image, "/", "_"), var.aws_ami_owner_id)) : var.HttpdNode01-os_admin_user}"
+    private_key = "${base64decode(var.ibm_pm_private_ssh_key)}"
   }
 
   provisioner "file" {
@@ -547,47 +554,34 @@ resource "vsphere_virtual_machine" "HttpdNode01" {
 # =================================================================
 #!/bin/bash
 
-if (( $# != 3 )); then
-echo "usage: arg 1 is user, arg 2 is public key, arg3 is CAMC Public Key"
-exit -1
+if (( $# != 2 )); then
+    echo "usage: arg 1 is user, arg 2 is public key"
+    exit -1
 fi
 
-userid="$1"
-ssh_key="$2"
-camc_ssh_key="$3"
+userid=$1
+ssh_key=$2
+
+if [[ $ssh_key = 'None' ]]; then
+  echo "skipping add, 'None' specified"
+  exit 0
+fi
 
 user_home=$(eval echo "~$userid")
 user_auth_key_file=$user_home/.ssh/authorized_keys
-echo "$user_auth_key_file"
 if ! [ -f $user_auth_key_file ]; then
-echo "$user_auth_key_file does not exist on this system, creating."
-mkdir $user_home/.ssh
-chmod 700 $user_home/.ssh
-touch $user_home/.ssh/authorized_keys
-chmod 600 $user_home/.ssh/authorized_keys
+  echo "$user_auth_key_file does not exist on this system"
+  exit -1
 else
-echo "user_home : $user_home"
+  echo "user_home --> $user_home"
 fi
 
-if [[ $ssh_key = 'None' ]]; then
-echo "skipping user key add, 'None' specified"
-else
-echo "$user_auth_key_file"
-echo "$ssh_key" >> "$user_auth_key_file"
+echo $ssh_key >> $user_auth_key_file
 if [ $? -ne 0 ]; then
-echo "failed to add to $user_auth_key_file"
-exit -1
+  echo "failed to add to $user_auth_key_file"
+  exit -1
 else
-echo "updated $user_auth_key_file"
-fi
-fi
-
-echo "$camc_ssh_key" >> "$user_auth_key_file"
-if [ $? -ne 0 ]; then
-echo "failed to add to $user_auth_key_file"
-exit -1
-else
-echo "updated $user_auth_key_file"
+  echo "updated $user_auth_key_file"
 fi
 
 EOF
@@ -597,8 +591,30 @@ EOF
   provisioner "remote-exec" {
     inline = [
       "bash -c 'chmod +x HttpdNode01_add_ssh_key.sh'",
-      "bash -c './HttpdNode01_add_ssh_key.sh  \"${var.HttpdNode01-os_admin_user}\" \"${var.user_public_ssh_key}\" \"${var.ibm_pm_public_ssh_key}\">> HttpdNode01_add_ssh_key.log 2>&1'",
+      "bash -c './HttpdNode01_add_ssh_key.sh  \"${var.HttpdNode01-os_admin_user}\" \"${var.user_public_ssh_key}\">> HttpdNode01_add_ssh_key.log 2>&1'",
     ]
+  }
+
+  root_block_device {
+    volume_type = "${var.HttpdNode01_root_block_device_volume_type}"
+    volume_size = "${var.HttpdNode01_root_block_device_volume_size}"
+
+    #iops = "${var.HttpdNode01_root_block_device_iops}"
+    delete_on_termination = "${var.HttpdNode01_root_block_device_delete_on_termination}"
+  }
+
+  user_data = "${data.template_cloudinit_config.HttpdNode01_init.rendered}"
+}
+
+data "template_cloudinit_config" "HttpdNode01_init" {
+  part {
+    content_type = "text/cloud-config"
+
+    content = <<EOF
+hostname: ${var.HttpdNode01-name}
+fqdn: ${var.HttpdNode01-name}.${var.runtime_domain}
+manage_etc_hosts: false
+EOF
   }
 }
 
@@ -607,7 +623,7 @@ EOF
 #########################################################
 
 resource "camc_bootstrap" "HttpdNode01_chef_bootstrap_comp" {
-  depends_on      = ["camc_vaultitem.VaultItem", "vsphere_virtual_machine.HttpdNode01"]
+  depends_on      = ["camc_vaultitem.VaultItem", "aws_instance.HttpdNode01"]
   name            = "HttpdNode01_chef_bootstrap_comp"
   camc_endpoint   = "${var.ibm_pm_service}/v1/bootstrap/chef"
   access_token    = "${var.ibm_pm_access_token}"
@@ -616,10 +632,10 @@ resource "camc_bootstrap" "HttpdNode01_chef_bootstrap_comp" {
 
   data = <<EOT
 {
-  "os_admin_user": "${var.HttpdNode01-os_admin_user}",
+  "os_admin_user": "${var.HttpdNode01-os_admin_user == "default"? lookup(var.default_os_admin_user, format("%s_%s", replace(var.HttpdNode01-image, "/", "_"), var.aws_ami_owner_id)) : var.HttpdNode01-os_admin_user}",
   "stack_id": "${random_id.stack_id.hex}",
   "environment_name": "_default",
-  "host_ip": "${vsphere_virtual_machine.HttpdNode01.network_interface.0.ipv4_address}",
+  "host_ip": "${var.HttpdNode01-mgmt-network-public == "false" ? aws_instance.HttpdNode01.private_ip : aws_instance.HttpdNode01.public_ip}",
   "node_name": "${var.HttpdNode01-name}",
   "node_attributes": {
     "ibm_internal": {
@@ -649,10 +665,10 @@ resource "camc_softwaredeploy" "HttpdNode01_httpd24-base-install" {
 
   data = <<EOT
 {
-  "os_admin_user": "${var.HttpdNode01-os_admin_user}",
+  "os_admin_user": "${var.HttpdNode01-os_admin_user == "default"? lookup(var.default_os_admin_user, format("%s_%s", replace(var.HttpdNode01-image, "/", "_"), var.aws_ami_owner_id)) : var.HttpdNode01-os_admin_user}",
   "stack_id": "${random_id.stack_id.hex}",
   "environment_name": "_default",
-  "host_ip": "${vsphere_virtual_machine.HttpdNode01.network_interface.0.ipv4_address}",
+  "host_ip": "${var.HttpdNode01-mgmt-network-public == "false" ? aws_instance.HttpdNode01.private_ip : aws_instance.HttpdNode01.public_ip}",
   "node_name": "${var.HttpdNode01-name}",
   "runlist": "role[httpd24-base-install]",
   "node_attributes": {
@@ -712,10 +728,10 @@ resource "camc_softwaredeploy" "HttpdNode01_httpd24-ssl-vhosts" {
 
   data = <<EOT
 {
-  "os_admin_user": "${var.HttpdNode01-os_admin_user}",
+  "os_admin_user": "${var.HttpdNode01-os_admin_user == "default"? lookup(var.default_os_admin_user, format("%s_%s", replace(var.HttpdNode01-image, "/", "_"), var.aws_ami_owner_id)) : var.HttpdNode01-os_admin_user}",
   "stack_id": "${random_id.stack_id.hex}",
   "environment_name": "_default",
-  "host_ip": "${vsphere_virtual_machine.HttpdNode01.network_interface.0.ipv4_address}",
+  "host_ip": "${var.HttpdNode01-mgmt-network-public == "false" ? aws_instance.HttpdNode01.private_ip : aws_instance.HttpdNode01.public_ip}",
   "node_name": "${var.HttpdNode01-name}",
   "runlist": "role[httpd24-ssl-vhosts]",
   "node_attributes": {
@@ -815,7 +831,7 @@ EOT
 }
 
 output "HttpdNode01_ip" {
-  value = "VM IP Address : ${vsphere_virtual_machine.HttpdNode01.network_interface.0.ipv4_address}"
+  value = "Private : ${aws_instance.HttpdNode01.private_ip} & Public : ${aws_instance.HttpdNode01.public_ip}"
 }
 
 output "HttpdNode01_name" {

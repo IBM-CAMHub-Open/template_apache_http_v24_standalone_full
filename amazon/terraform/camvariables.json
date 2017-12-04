@@ -47,38 +47,109 @@
       "group_name": "environment"
     },
     {
-      "name": "allow_unverified_ssl",
+      "name": "HttpdNode01_root_block_device_delete_on_termination",
       "type": "string",
-      "description": "Communication with vsphere server with self signed certificate",
-      "default": true,
-      "hidden": true,
-      "label": "Communication with vsphere server with self signed certificate",
+      "description": "AWS Root Block Device Delete on Termination",
+      "default": "true",
+      "hidden": false,
+      "label": "AWS Root Block Device Delete on Termination - HttpdNode01",
       "secured": false,
+      "options": [
+        {
+          "value": "true",
+          "label": "True",
+          "default": "true"
+        },
+        {
+          "value": "false",
+          "label": "False"
+        }
+      ],
       "required": true,
       "immutable": false,
-      "group_name": "cloud"
+      "immutable_after_create": true,
+      "group_name": "httpdnode01"
     },
     {
-      "name": "HttpdNode01_dns_servers",
-      "type": "list",
-      "description": "DNS servers for the virtual network adapter",
+      "name": "HttpdNode01_root_block_device_volume_size",
+      "type": "string",
+      "description": "AWS Root Block Device Volume Size",
+      "default": 25,
       "hidden": false,
-      "label": "DNS Servers - HttpdNode01",
+      "label": "AWS Root Block Device Volume Size - HttpdNode01",
       "secured": false,
       "required": true,
       "immutable": false,
-      "group_name": "virtualmachine"
+      "immutable_after_create": true,
+      "group_name": "httpdnode01"
     },
     {
-      "name": "HttpdNode01_dns_suffixes",
-      "type": "list",
-      "description": "Name resolution suffixes for the virtual network adapter",
+      "name": "HttpdNode01_root_block_device_volume_type",
+      "type": "string",
+      "description": "AWS Root Block Device Volume Type",
+      "default": "gp2",
       "hidden": false,
-      "label": "DNS Suffixes - HttpdNode01",
+      "label": "AWS Root Block Device Volume Type - HttpdNode01",
+      "secured": false,
+      "options": [
+        {
+          "value": "gp2",
+          "label": "General Purpose SSD",
+          "default": "true"
+        },
+        {
+          "value": "io1",
+          "label": "Provisioned IOPS SSD"
+        },
+        {
+          "value": "st1",
+          "label": "Throughput Optimized HDD"
+        },
+        {
+          "value": "sc1",
+          "label": "Cold HDD"
+        }
+      ],
+      "required": true,
+      "immutable": false,
+      "immutable_after_create": true,
+      "group_name": "httpdnode01"
+    },
+    {
+      "name": "HttpdNode01_subnet_name",
+      "type": "string",
+      "description": "AWS Subnet Name",
+      "hidden": false,
+      "label": "AWS Subnet Name - HttpdNode01",
       "secured": false,
       "required": true,
       "immutable": false,
-      "group_name": "virtualmachine"
+      "immutable_after_create": true,
+      "group_name": "httpdnode01"
+    },
+    {
+      "name": "HttpdNode01_associate_public_ip_address",
+      "type": "string",
+      "description": "Assign a public IP",
+      "default": "true",
+      "hidden": false,
+      "label": "Assign a public IP - HttpdNode01",
+      "secured": false,
+      "options": [
+        {
+          "value": "true",
+          "label": "True",
+          "default": "true"
+        },
+        {
+          "value": "false",
+          "label": "False"
+        }
+      ],
+      "required": true,
+      "immutable": false,
+      "immutable_after_create": true,
+      "group_name": "httpdnode01"
     },
     {
       "name": "HttpdNode01_httpd_virtualhosts_default_http_server_custom_log",
@@ -250,40 +321,6 @@
       "group_name": "httpdnode01"
     },
     {
-      "name": "HttpdNode01_root_disk_keep_on_remove",
-      "type": "string",
-      "description": "Delete template disk volume when the virtual machine is deleted",
-      "default": "false",
-      "hidden": true,
-      "label": "Delete template disk volume when the virtual machine is deleted - HttpdNode01",
-      "secured": false,
-      "options": [
-        {
-          "value": "false",
-          "label": "False",
-          "default": "true"
-        },
-        {
-          "value": "true",
-          "label": "True"
-        }
-      ],
-      "required": true,
-      "immutable": false,
-      "group_name": "virtualmachine"
-    },
-    {
-      "name": "HttpdNode01_domain",
-      "type": "string",
-      "description": "Domain Name of virtual machine",
-      "hidden": false,
-      "label": "Domain Name - HttpdNode01",
-      "secured": false,
-      "required": true,
-      "immutable": false,
-      "group_name": "virtualmachine"
-    },
-    {
       "name": "HttpdNode01_httpd_php_mod_enabled",
       "type": "string",
       "description": "Enable PHP in Apache on Linux by Loading the Module",
@@ -360,10 +397,10 @@
       "group_name": "httpdnode01"
     },
     {
-      "name": "HttpdNode01_httpd_virtualhosts_default_http_server_vhost_type",
+      "name": "HttpdNode01_httpd_vhosts_enabled",
       "type": "string",
       "description": "Allow to configure virtual hosts to run multiple websites on the same HTTP server",
-      "default": "name_based",
+      "default": "false",
       "hidden": false,
       "label": "Enable Virtual Host Configuration - HttpdNode01",
       "secured": false,
@@ -373,10 +410,10 @@
       "group_name": "httpdnode01"
     },
     {
-      "name": "HttpdNode01_httpd_vhosts_enabled",
+      "name": "HttpdNode01_httpd_virtualhosts_default_http_server_vhost_type",
       "type": "string",
       "description": "Allow to configure virtual hosts to run multiple websites on the same HTTP server",
-      "default": "false",
+      "default": "name_based",
       "hidden": false,
       "label": "Enable Virtual Host Configuration - HttpdNode01",
       "secured": false,
@@ -529,6 +566,19 @@
       "group_name": "httpdnode01"
     },
     {
+      "name": "HttpdNode01-flavor",
+      "type": "string",
+      "description": "HttpdNode01 Flavor",
+      "default": "t2.small",
+      "hidden": false,
+      "label": "HttpdNode01 Flavor",
+      "secured": false,
+      "required": true,
+      "immutable": false,
+      "immutable_after_create": true,
+      "group_name": "httpdnode01"
+    },
+    {
       "name": "ibm_pm_access_token",
       "type": "string",
       "description": "IBM Pattern Manager Access Token",
@@ -618,6 +668,7 @@
       "name": "HttpdNode01-image",
       "type": "string",
       "description": "Operating system image id / template that should be used when creating the virtual image",
+      "default": "RHEL-7.4_HVM_GA",
       "hidden": false,
       "label": "Operating System ID / Template - HttpdNode01",
       "secured": false,
@@ -635,41 +686,6 @@
       "required": true,
       "immutable": false,
       "group_name": "virtualmachine"
-    },
-    {
-      "name": "HttpdNode01-os_password",
-      "type": "string",
-      "description": "Operating System Password for the Operating System User to access virtual machine",
-      "hidden": false,
-      "label": "Operating system password - HttpdNode01",
-      "secured": true,
-      "required": true,
-      "immutable": false,
-      "group_name": "virtualmachine"
-    },
-    {
-      "name": "ibm_pm_private_ssh_key",
-      "type": "string",
-      "description": "Private CAMC SSH key (base64 encoded) used to connect to the virtual guest.",
-      "hidden": true,
-      "label": "Private CAMC SSH key (base64 encoded) used to connect to the virtual guest.",
-      "secured": true,
-      "required": true,
-      "immutable": true,
-      "group_name": "environment",
-      "default": "${advanced_content_runtime_chef.ibm_pm_private_ssh_key}"
-    },
-    {
-      "name": "ibm_pm_public_ssh_key",
-      "type": "string",
-      "description": "Public CAMC SSH key value which is used to connect to a guest, used on VMware only.",
-      "hidden": true,
-      "label": "Public CAMC SSH key value which is used to connect to a guest, used on VMware only.",
-      "secured": false,
-      "required": true,
-      "immutable": false,
-      "group_name": "environment",
-      "default": "${advanced_content_runtime_chef.ibm_pm_public_ssh_key}"
     },
     {
       "name": "HttpdNode01_httpd_ssl_sslproxycarevocationcheck",
@@ -735,82 +751,108 @@
       "group_name": "virtualmachine"
     },
     {
-      "name": "HttpdNode01_root_disk_controller_type",
+      "name": "aws_ami_owner_id",
       "type": "string",
-      "description": "Type of template disk controller",
-      "default": "scsi",
+      "description": "The AMI Owner ID",
+      "default": "309956199498",
       "hidden": false,
-      "label": "Template Disk Controller - HttpdNode01",
+      "label": "The AMI Owner ID",
+      "secured": false,
+      "required": true,
+      "immutable": false,
+      "group_name": "cloud"
+    },
+    {
+      "name": "aws_region",
+      "type": "string",
+      "description": "The aws region",
+      "hidden": false,
+      "label": "The aws region",
       "secured": false,
       "options": [
         {
-          "value": "scsi",
-          "label": "scsi",
-          "default": "true"
+          "value": "us-east-1",
+          "label": "US East (N. Virginia)",
+          "default": true
         },
         {
-          "value": "scsi-lsi-parallel",
-          "label": "scsi-lsi-parallel"
+          "value": "us-east-2",
+          "label": "US East (Ohio)"
         },
         {
-          "value": "scsi-buslogic",
-          "label": "scsi-buslogic"
+          "value": "us-west-1",
+          "label": "US West (N. California)"
         },
         {
-          "value": "scsi-paravirtual",
-          "label": "scsi-paravirtual"
+          "value": "us-west-2",
+          "label": "US West (Oregon)"
         },
         {
-          "value": "scsi-isi-sas",
-          "label": "scsi-isi-sas"
+          "value": "ca-central-1",
+          "label": "Canada (Central)"
         },
         {
-          "value": "ide",
-          "label": "ide"
+          "value": "eu-west-1",
+          "label": "EU (Ireland)"
+        },
+        {
+          "value": "eu-central-1",
+          "label": "EU (Frankfurt)"
+        },
+        {
+          "value": "eu-west-2",
+          "label": "EU (London)"
+        },
+        {
+          "value": "ap-northeast-1",
+          "label": "Asia Pacific (Tokyo)"
+        },
+        {
+          "value": "ap-northeast-2",
+          "label": "Asia Pacific (Seoul)"
+        },
+        {
+          "value": "ap-southeast-1",
+          "label": "Asia Pacific (Singapore)"
+        },
+        {
+          "value": "ap-southeast-2",
+          "label": "Asia Pacific (Sydney)"
+        },
+        {
+          "value": "ap-south-1",
+          "label": "Asia Pacific (Mumbai)"
+        },
+        {
+          "value": "sa-east-1",
+          "label": "South America (São Paulo)"
         }
       ],
       "required": true,
       "immutable": false,
-      "group_name": "virtualmachine"
+      "group_name": "cloud"
     },
     {
-      "name": "HttpdNode01_root_disk_datastore",
+      "name": "aws_sg_camc_name",
       "type": "string",
-      "description": "Data store or storage cluster name for target virtual machine's disks",
+      "description": "The name of the aws security group for automation content",
       "hidden": false,
-      "label": "Template Disk Datastore - HttpdNode01",
+      "label": "The name of the aws security group for automation content",
       "secured": false,
       "required": true,
       "immutable": false,
-      "group_name": "virtualmachine"
+      "group_name": "cloud"
     },
     {
-      "name": "HttpdNode01_root_disk_type",
+      "name": "aws_vpc_name",
       "type": "string",
-      "description": "Type of template disk volume",
-      "default": "eager_zeroed",
+      "description": "The name of the aws vpc",
       "hidden": false,
-      "label": "Template Disk Type - HttpdNode01",
+      "label": "The name of the aws vpc",
       "secured": false,
-      "options": [
-        {
-          "value": "eager_zeroed",
-          "label": "Thick Provision Eager Zeroed",
-          "default": "true"
-        },
-        {
-          "value": "lazy",
-          "label": "Thick Provision Lazy Zeroed"
-        },
-        {
-          "value": "thin",
-          "label": "Thin Provision",
-          "group_name": "virtualmachine"
-        }
-      ],
       "required": true,
       "immutable": false,
-      "group_name": "virtualmachine"
+      "group_name": "cloud"
     },
     {
       "name": "HttpdNode01_httpd_virtualhosts_default_https_server_vhost_type",
@@ -865,6 +907,29 @@
       "group_name": "httpdnode01"
     },
     {
+      "name": "HttpdNode01-mgmt-network-public",
+      "type": "string",
+      "description": "Expose and use public IP of virtual machine for internal communication",
+      "default": "true",
+      "hidden": false,
+      "label": "Use Public Management Network - HttpdNode01",
+      "secured": false,
+      "options": [
+        {
+          "value": false,
+          "label": false
+        },
+        {
+          "value": true,
+          "label": true
+        }
+      ],
+      "required": true,
+      "immutable": false,
+      "immutable_after_create": true,
+      "group_name": "httpdnode01"
+    },
+    {
       "name": "HttpdNode01_httpd_os_users_web_content_owner_name",
       "type": "string",
       "description": "User ID of web content owner to be configured in HTTP server",
@@ -891,128 +956,28 @@
       "group_name": "httpdnode01"
     },
     {
-      "name": "HttpdNode01_ipv4_gateway",
+      "name": "ibm_pm_private_ssh_key",
       "type": "string",
-      "description": "IPv4 gateway for vNIC configuration",
-      "hidden": false,
-      "label": "Virtual Machine Gateway Address - HttpdNode01",
-      "secured": false,
+      "description": "Private CAMC SSH key (base64 encoded) used to connect to the virtual guest.",
+      "hidden": true,
+      "label": "Private CAMC SSH key (base64 encoded) used to connect to the virtual guest. - ssh_keys",
+      "secured": true,
       "required": true,
-      "immutable": false,
-      "group_name": "virtualmachine"
+      "immutable": true,
+      "group_name": "ssh_keys",
+      "default": "${advanced_content_runtime_chef.ibm_pm_private_ssh_key}"
     },
     {
-      "name": "HttpdNode01_ipv4_address",
+      "name": "ibm_pm_public_ssh_key_name",
       "type": "string",
-      "description": "IPv4 address for vNIC configuration",
-      "hidden": false,
-      "label": "Virtual Machine IP Address - HttpdNode01",
+      "description": "Public CAMC SSH key name used to connect to the virtual guest.",
+      "hidden": true,
+      "label": "Public CAMC SSH key name used to connect to the virtual guest. - ssh_keys",
       "secured": false,
       "required": true,
-      "immutable": false,
-      "group_name": "virtualmachine"
-    },
-    {
-      "name": "HttpdNode01_memory",
-      "type": "string",
-      "description": "Memory assigned to the virtual machine in megabytes. This value is required to be an increment of 1024",
-      "default": 2048,
-      "hidden": false,
-      "label": "Virtual Machine Memory - HttpdNode01",
-      "secured": false,
-      "required": true,
-      "immutable": false,
-      "group_name": "virtualmachine"
-    },
-    {
-      "name": "HttpdNode01_ipv4_prefix_length",
-      "type": "string",
-      "description": "IPv4 prefix length for vNIC configuration. The value must be a number between 8 and 32",
-      "hidden": false,
-      "label": "Virtual Machine Netmask Prefix - HttpdNode01",
-      "secured": false,
-      "required": true,
-      "immutable": false,
-      "group_name": "virtualmachine"
-    },
-    {
-      "name": "HttpdNode01_number_of_vcpu",
-      "type": "string",
-      "description": "Number of virtual CPU for the virtual machine, which is required to be a positive Integer",
-      "default": 2,
-      "hidden": false,
-      "label": "Virtual Machine vCPUs - HttpdNode01",
-      "secured": false,
-      "required": true,
-      "immutable": false,
-      "group_name": "virtualmachine"
-    },
-    {
-      "name": "HttpdNode01_network_interface_label",
-      "type": "string",
-      "description": "vSphere port group or network label for virtual machine's vNIC",
-      "hidden": false,
-      "label": "Virtual Machine vSphere Port Group - HttpdNode01",
-      "secured": false,
-      "required": true,
-      "immutable": false,
-      "group_name": "virtualmachine"
-    },
-    {
-      "name": "HttpdNode01_cluster",
-      "type": "string",
-      "description": "Target vSphere cluster to host the virtual machine",
-      "hidden": false,
-      "label": "vSphere Cluster - HttpdNode01",
-      "secured": false,
-      "required": true,
-      "immutable": false,
-      "group_name": "cloud"
-    },
-    {
-      "name": "HttpdNode01_datacenter",
-      "type": "string",
-      "description": "Target vSphere datacenter for virtual machine creation",
-      "hidden": false,
-      "label": "vSphere Datacenter - HttpdNode01",
-      "secured": false,
-      "required": true,
-      "immutable": false,
-      "group_name": "cloud"
-    },
-    {
-      "name": "HttpdNode01_folder",
-      "type": "string",
-      "description": "Target vSphere folder for virtual machine",
-      "hidden": false,
-      "label": "vSphere Folder Name - HttpdNode01",
-      "secured": false,
-      "required": true,
-      "immutable": false,
-      "group_name": "cloud"
-    },
-    {
-      "name": "HttpdNode01_adapter_type",
-      "type": "string",
-      "description": "Network adapter type for vNIC Configuration",
-      "default": "vmxnet3",
-      "hidden": false,
-      "label": "vSphere Network Adapter Type - HttpdNode01",
-      "secured": false,
-      "options": [
-        {
-          "value": "vmxnet3",
-          "label": "vmxnet3",
-          "default": "true"
-        },
-        {
-          "value": "e1000",
-          "default": "e1000"
-        }
-      ],
-      "required": true,
-      "immutable": false,
-      "group_name": "virtualmachine"
+      "immutable": true,
+      "group_name": "ssh_keys",
+      "default": "${advanced_content_runtime_chef.ibm_pm_public_ssh_key_name}"
     },
     {
       "name": "user_public_ssh_key",
@@ -1025,6 +990,18 @@
       "required": true,
       "immutable": false,
       "group_name": "ssh_keys"
+    },
+    {
+      "name": "runtime_domain",
+      "type": "string",
+      "description": "domain name",
+      "default": "${advanced_content_runtime_chef.runtime_domain}",
+      "hidden": true,
+      "label": "domain name",
+      "secured": false,
+      "required": true,
+      "immutable": true,
+      "group_name": "cloud"
     }
   ],
   "template_output_params": [
