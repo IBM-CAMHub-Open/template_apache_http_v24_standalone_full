@@ -12,10 +12,6 @@
       "label": "Cloud Input Variables"
     },
     {
-      "name": "virtualmachine",
-      "label": "Virtual Machine Input Variables"
-    },
-    {
       "name": "ssh_keys",
       "label": "SSH Keys"
     },
@@ -24,8 +20,12 @@
       "label": "Environment"
     },
     {
-      "name": "httpdnode01",
-      "label": "HttpdNode01"
+      "name": "httpnode01",
+      "label": "HTTPNode01"
+    },
+    {
+      "name": "virtualmachine",
+      "label": "Virtual Machine Input Variables"
     },
     {
       "name": "ungrouped",
@@ -51,181 +51,181 @@
       "group_name": "environment"
     },
     {
-      "name": "HttpdNode01_httpd_virtualhosts_default_http_server_custom_log",
+      "name": "HTTPNode01_httpd_virtualhosts_default_http_server_custom_log",
       "type": "string",
       "description": "Location of the HTTP Server Custom Log",
       "default": "default_http_server_custom_log",
       "hidden": false,
-      "label": "Default HTTP Server Virtual Host Custom Log Directory - HttpdNode01",
+      "label": "Default HTTP Server Virtual Host Custom Log Directory - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01_httpd_virtualhosts_default_http_server_custom_log_format",
+      "name": "HTTPNode01_httpd_virtualhosts_default_http_server_custom_log_format",
       "type": "string",
       "description": "Log Format of the Custom Log",
       "default": "combined",
       "hidden": false,
-      "label": "Default HTTP Server Virtual Host Custom Log Format - HttpdNode01",
+      "label": "Default HTTP Server Virtual Host Custom Log Format - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01_httpd_virtualhosts_default_http_server_document_root",
+      "name": "HTTPNode01_httpd_virtualhosts_default_http_server_document_root",
       "type": "string",
       "description": "Location of the Default Docuement Root",
       "default": "/var/www/default_http_server",
       "hidden": false,
-      "label": "Default HTTP Server Virtual Host Document Root - HttpdNode01",
+      "label": "Default HTTP Server Virtual Host Document Root - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01_httpd_virtualhosts_default_http_server_error_log",
+      "name": "HTTPNode01_httpd_virtualhosts_default_http_server_error_log",
       "type": "string",
       "description": "Location of the HTTP Server Error Log",
       "default": "default_http_server_error_log",
       "hidden": false,
-      "label": "Default HTTP Server Virtual Host Error Log Directory - HttpdNode01",
+      "label": "Default HTTP Server Virtual Host Error Log Directory - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01_httpd_virtualhosts_default_http_server_server_admin",
+      "name": "HTTPNode01_httpd_virtualhosts_default_http_server_server_admin",
       "type": "string",
       "description": "Email address of the Server Admin",
       "default": "webmaster",
       "hidden": false,
-      "label": "Default HTTP Server Virtual Host Server Admin - HttpdNode01",
+      "label": "Default HTTP Server Virtual Host Server Admin - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01_httpd_virtualhosts_default_https_server_proxy_enabled",
+      "name": "HTTPNode01_httpd_virtualhosts_default_https_server_proxy_enabled",
       "type": "string",
       "description": "Enable proxy configuration",
       "default": "true",
       "hidden": false,
-      "label": "DefaultHTTPSGlobalSSLConfig - HttpdNode01",
+      "label": "DefaultHTTPSGlobalSSLConfig - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01_httpd_virtualhosts_default_https_server_custom_log",
+      "name": "HTTPNode01_httpd_virtualhosts_default_https_server_custom_log",
       "type": "string",
       "description": "Vhost custom log dir",
       "default": "default_https_server_custom_log",
       "hidden": false,
-      "label": "DefaultHTTPSVhostCustomLogDir - HttpdNode01",
+      "label": "DefaultHTTPSVhostCustomLogDir - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01_httpd_virtualhosts_default_https_server_custom_log_format",
+      "name": "HTTPNode01_httpd_virtualhosts_default_https_server_custom_log_format",
       "type": "string",
       "description": "Vhost custom log format",
       "default": "combined",
       "hidden": false,
-      "label": "DefaultHTTPSVhostCustomLogFormat - HttpdNode01",
+      "label": "DefaultHTTPSVhostCustomLogFormat - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01_httpd_virtualhosts_default_https_server_document_root",
+      "name": "HTTPNode01_httpd_virtualhosts_default_https_server_document_root",
       "type": "string",
       "description": "Vhost document root",
       "default": "/var/www/default_https_server",
       "hidden": false,
-      "label": "DefaultHTTPSVhostDocumentRoot - HttpdNode01",
+      "label": "DefaultHTTPSVhostDocumentRoot - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01_httpd_virtualhosts_default_https_server_error_log",
+      "name": "HTTPNode01_httpd_virtualhosts_default_https_server_error_log",
       "type": "string",
       "description": "Vhost error log dir",
       "default": "default_https_server_error_log",
       "hidden": false,
-      "label": "DefaultHTTPSVhostErrorLogDir - HttpdNode01",
+      "label": "DefaultHTTPSVhostErrorLogDir - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01_httpd_virtualhosts_default_https_server_log_dir",
+      "name": "HTTPNode01_httpd_virtualhosts_default_https_server_log_dir",
       "type": "string",
       "description": "Vhost log dir",
       "default": "/var/log/httpd",
       "hidden": false,
-      "label": "DefaultHTTPSVhostLogDir - HttpdNode01",
+      "label": "DefaultHTTPSVhostLogDir - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01_httpd_virtualhosts_default_https_server_server_admin",
+      "name": "HTTPNode01_httpd_virtualhosts_default_https_server_server_admin",
       "type": "string",
       "description": "Vhost Server admin",
       "default": "webmaster",
       "hidden": false,
-      "label": "DefaultHTTPSVhostServerAdmin - HttpdNode01",
+      "label": "DefaultHTTPSVhostServerAdmin - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01_httpd_virtualhosts_default_https_server_server_name",
+      "name": "HTTPNode01_httpd_virtualhosts_default_https_server_server_name",
       "type": "string",
       "description": "Vhost server name for directing requests",
       "default": "default_https_server",
       "hidden": false,
-      "label": "DefaultHTTPSVhostServerName - HttpdNode01",
+      "label": "DefaultHTTPSVhostServerName - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01_httpd_php_mod_enabled",
+      "name": "HTTPNode01_httpd_php_mod_enabled",
       "type": "string",
       "description": "Enable PHP in Apache on Linux by Loading the Module",
       "default": "true",
       "hidden": false,
-      "label": "Enable PHP Module - HttpdNode01",
+      "label": "Enable PHP Module - HTTPNode01",
       "secured": false,
       "options": [
         {
@@ -241,228 +241,228 @@
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01_httpd_proxy_ProxyPreserveHost",
+      "name": "HTTPNode01_httpd_proxy_ProxyPreserveHost",
       "type": "string",
       "description": "Instruct the reverse proxy to preserve original host header from the client browser",
       "default": "On",
       "hidden": false,
-      "label": "Enable ProxyPreserveHost - HttpdNode01",
+      "label": "Enable ProxyPreserveHost - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01_httpd_ssl_sslcompression",
+      "name": "HTTPNode01_httpd_ssl_sslcompression",
       "type": "string",
       "description": "Enable SSL compression within HTTP Server Configuration",
       "default": "Off",
       "hidden": false,
-      "label": "Enable SSL Compression - HttpdNode01",
+      "label": "Enable SSL Compression - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01_httpd_virtualhosts_default_https_server_ssl_enabled",
+      "name": "HTTPNode01_httpd_virtualhosts_default_https_server_ssl_enabled",
       "type": "string",
       "description": "Enable SSL for virtual host for HTTP communication in HTTP server",
       "default": "true",
       "hidden": false,
-      "label": "Enable SSL for Virtual Host for HTTP Communication - HttpdNode01",
+      "label": "Enable SSL for Virtual Host for HTTP Communication - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01_httpd_virtualhosts_default_http_server_ssl_enabled",
+      "name": "HTTPNode01_httpd_virtualhosts_default_http_server_ssl_enabled",
       "type": "string",
       "description": "Enable SSL for virtual host for HTTPS communication in HTTP server",
       "default": "false",
       "hidden": false,
-      "label": "Enable SSL for Virtual Host for HTTPs Communication - HttpdNode01",
+      "label": "Enable SSL for Virtual Host for HTTPS Communication - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01_httpd_vhosts_enabled",
+      "name": "HTTPNode01_httpd_vhosts_enabled",
       "type": "string",
       "description": "Allow to configure virtual hosts to run multiple websites on the same HTTP server",
       "default": "false",
       "hidden": false,
-      "label": "Enable Virtual Host Configuration - HttpdNode01",
+      "label": "Enable Virtual Host Configuration - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01_httpd_virtualhosts_default_http_server_vhost_type",
+      "name": "HTTPNode01_httpd_virtualhosts_default_http_server_vhost_type",
       "type": "string",
       "description": "Allow to configure virtual hosts to run multiple websites on the same HTTP server",
       "default": "name_based",
       "hidden": false,
-      "label": "Enable Virtual Host Configuration - HttpdNode01",
+      "label": "Enable Virtual Host Configuration - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01_httpd_os_users_web_content_owner_gid",
+      "name": "HTTPNode01_httpd_os_users_web_content_owner_gid",
       "type": "string",
       "description": "Group ID of web content owner to be configured in HTTP server",
       "default": "webmaster",
       "hidden": false,
-      "label": "Group Name of HTTP Web Content Owner - HttpdNode01",
+      "label": "Group Name of HTTP Web Content Owner - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01_httpd_log_dir",
+      "name": "HTTPNode01_httpd_log_dir",
       "type": "string",
       "description": "Directory where HTTP Server logs will be sent",
       "default": "/var/log/httpd",
       "hidden": true,
-      "label": "HTTP Log Directory - HttpdNode01",
+      "label": "HTTP Log Directory - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01_httpd_server_admin",
+      "name": "HTTPNode01_httpd_server_admin",
       "type": "string",
       "description": "Email Address of the Webmaster",
       "default": "webmaster@orpheus.ibm.com",
       "hidden": false,
-      "label": "HTTP Server Admin - HttpdNode01",
+      "label": "HTTP Server Admin - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01_httpd_document_root",
+      "name": "HTTPNode01_httpd_document_root",
       "type": "string",
       "description": "File System Location of the Document Root",
       "default": "/var/www/html5",
       "hidden": false,
-      "label": "HTTP Server Document Root Location - HttpdNode01",
+      "label": "HTTP Server Document Root Location - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01_httpd_os_users_web_content_owner_shell",
+      "name": "HTTPNode01_httpd_os_users_web_content_owner_shell",
       "type": "string",
       "description": "Default shell configured on Linux server",
       "default": "/bin/bash",
       "hidden": true,
-      "label": "HTTP Server HTTP Web Content Owner Unix Shell - HttpdNode01",
+      "label": "HTTP Server HTTP Web Content Owner Unix Shell - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01_httpd_listen",
+      "name": "HTTPNode01_httpd_listen",
       "type": "string",
       "description": "Listening port to be configured in HTTP server",
       "default": "8080",
       "hidden": false,
-      "label": "HTTP Server Listen Port - HttpdNode01",
+      "label": "HTTP Server Listen Port - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01_httpd_log_level",
+      "name": "HTTPNode01_httpd_log_level",
       "type": "string",
       "description": "Log levels of the http process",
       "default": "info",
       "hidden": false,
-      "label": "HTTP Server Log Levels - HttpdNode01",
+      "label": "HTTP Server Log Levels - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01_httpd_data_dir_mode",
+      "name": "HTTPNode01_httpd_data_dir_mode",
       "type": "string",
       "description": "OS Permisssions of data folders",
       "default": "0755",
       "hidden": true,
-      "label": "HTTP Server OS Permissions Data Directory - HttpdNode01",
+      "label": "HTTP Server OS Permissions Data Directory - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01_httpd_version",
+      "name": "HTTPNode01_httpd_version",
       "type": "string",
       "description": "Version of HTTP Server to be installed.",
       "default": "2.4",
       "hidden": false,
-      "label": "HTTP Server version - HttpdNode01",
+      "label": "HTTP Server version - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01_httpd_server_name",
+      "name": "HTTPNode01_httpd_server_name",
       "type": "string",
       "description": "The Name of the HTTP Server, normally the FQDN of server.",
       "default": "orpheus.ibm.com",
       "hidden": true,
-      "label": "HTTPd Server Name - HttpdNode01",
+      "label": "HTTPd Server Name - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01_httpd_os_users_web_content_owner_home",
+      "name": "HTTPNode01_httpd_os_users_web_content_owner_home",
       "type": "string",
       "description": "Home directory of web content owner to be configured in HTTP server",
       "default": "/home/webmaster",
       "hidden": false,
-      "label": "Home Directory of HTTP Web Content Owner - HttpdNode01",
+      "label": "Home Directory of HTTP Web Content Owner - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
       "name": "ibm_pm_access_token",
@@ -525,36 +525,12 @@
       "group_name": "environment"
     },
     {
-      "name": "HttpdNode01_local_disk",
-      "type": "string",
-      "description": "User local disk or SAN disk",
-      "default": "false",
-      "hidden": false,
-      "label": "IBMCloud - Local / SAN Disk - HttpdNode01",
-      "secured": false,
-      "options": [
-        {
-          "value": "true",
-          "label": "True"
-        },
-        {
-          "value": "false",
-          "label": "False",
-          "default": "true"
-        }
-      ],
-      "required": true,
-      "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "httpdnode01"
-    },
-    {
-      "name": "HttpdNode01_datacenter",
+      "name": "HTTPNode01_datacenter",
       "type": "string",
       "description": "IBMCloud datacenter where infrastructure resources will be deployed",
       "default": "dal09",
       "hidden": false,
-      "label": "IBMCloud Datacenter - HttpdNode01",
+      "label": "IBMCloud Datacenter - HTTPNode01",
       "secured": false,
       "options": [
         {
@@ -685,16 +661,15 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "cloud"
     },
     {
-      "name": "HttpdNode01_dedicated_acct_host_only",
+      "name": "HTTPNode01_dedicated_acct_host_only",
       "type": "string",
       "description": "Shared or dedicated host, where dedicated host usually means higher performance and cost",
       "default": "false",
       "hidden": false,
-      "label": "IBMCloud Dedicate Account Host - HttpdNode01",
+      "label": "IBMCloud Dedicate Account Host - HTTPNode01",
       "secured": false,
       "options": [
         {
@@ -709,16 +684,15 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "cloud"
     },
     {
-      "name": "HttpdNode01_hourly_billing",
+      "name": "HTTPNode01_hourly_billing",
       "type": "string",
       "description": "Billing cycle: hourly billed or monthly billed",
       "default": "true",
       "hidden": false,
-      "label": "IBMCloud Hourly Billing - HttpdNode01",
+      "label": "IBMCloud Hourly Billing - HTTPNode01",
       "secured": false,
       "options": [
         {
@@ -733,16 +707,15 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "cloud"
     },
     {
-      "name": "HttpdNode01_network_speed",
+      "name": "HTTPNode01_network_speed",
       "type": "string",
       "description": "Bandwidth of network communication applied to the virtual machine",
       "default": 1000,
       "hidden": false,
-      "label": "IBMCloud Network Speed - HttpdNode01",
+      "label": "IBMCloud Network Speed - HTTPNode01",
       "secured": false,
       "options": [
         {
@@ -757,16 +730,15 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "cloud"
     },
     {
-      "name": "HttpdNode01_private_network_only",
+      "name": "HTTPNode01_private_network_only",
       "type": "string",
       "description": "Provision the virtual machine with only private IP",
       "default": "false",
       "hidden": false,
-      "label": "IBMCloud Private Network - HttpdNode01",
+      "label": "IBMCloud Private Network - HTTPNode01",
       "secured": false,
       "options": [
         {
@@ -781,16 +753,15 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "cloud"
     },
     {
-      "name": "HttpdNode01_memory",
+      "name": "HTTPNode01_memory",
       "type": "string",
       "description": "Amount of Memory (MBs), which is required to be one or more times of 1024",
       "default": 4096,
       "hidden": false,
-      "label": "IBMCloud VSI Memory - HttpdNode01",
+      "label": "IBMCloud VSI Memory - HTTPNode01",
       "secured": false,
       "options": [
         {
@@ -825,16 +796,15 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "cloud"
     },
     {
-      "name": "HttpdNode01_number_of_cores",
+      "name": "HTTPNode01_number_of_cores",
       "type": "string",
       "description": "Number of CPU cores, which is required to be a positive Integer",
       "default": 2,
       "hidden": false,
-      "label": "IBMCloud VSI Number of Cores - HttpdNode01",
+      "label": "IBMCloud VSI Number of Cores - HTTPNode01",
       "secured": false,
       "options": [
         {
@@ -869,65 +839,64 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "cloud"
     },
     {
-      "name": "HttpdNode01_httpd_virtualhosts_default_http_server_vhost_listen",
+      "name": "HTTPNode01_httpd_virtualhosts_default_http_server_vhost_listen",
       "type": "string",
       "description": "Listening port configured in virtual host for HTTP communication in HTTP server",
       "default": "80",
       "hidden": false,
-      "label": "Listen Port in Virtual Host for HTTP communication - HttpdNode01",
+      "label": "Listen Port in Virtual Host for HTTP communication - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01_httpd_virtualhosts_default_https_server_vhost_listen",
+      "name": "HTTPNode01_httpd_virtualhosts_default_https_server_vhost_listen",
       "type": "string",
       "description": "Listening port configured in virtual host for HTTPS communication in HTTP server",
       "default": "443",
       "hidden": false,
-      "label": "Listen Port in Virtual Host for HTTPS communication - HttpdNode01",
+      "label": "Listen Port in Virtual Host for HTTPS communication - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01-image",
+      "name": "HTTPNode01-image",
       "type": "string",
       "description": "Operating system image id / template that should be used when creating the virtual image",
       "default": "REDHAT_7_64",
       "hidden": false,
-      "label": "Operating System ID / Template - HttpdNode01",
+      "label": "Operating System ID / Template - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "group_name": "virtualmachine"
     },
     {
-      "name": "HttpdNode01-os_admin_user",
+      "name": "HTTPNode01-os_admin_user",
       "type": "string",
       "description": "Name of the admin user account in the virtual machine that will be accessed via SSH",
       "hidden": false,
-      "label": "Operating System Username - HttpdNode01",
+      "label": "Operating System Username - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "group_name": "virtualmachine"
     },
     {
-      "name": "HttpdNode01_root_disk_size",
+      "name": "HTTPNode01_root_disk_size",
       "type": "string",
-      "description": "Root Disk Size - HttpdNode01",
+      "description": "Root Disk Size - HTTPNode01",
       "default": "25",
       "hidden": false,
-      "label": "Root Disk Size - HttpdNode01",
+      "label": "Root Disk Size - HTTPNode01",
       "secured": false,
       "options": [
         {
@@ -942,131 +911,131 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "cloud"
     },
     {
-      "name": "HttpdNode01_httpd_ssl_sslproxycarevocationcheck",
+      "name": "HTTPNode01_httpd_ssl_sslproxycarevocationcheck",
       "type": "string",
       "description": "SSL proxy CA revocation check",
       "default": "PleaseProvide",
       "hidden": false,
-      "label": "SSL proxy CA revocation check - HttpdNode01",
+      "label": "SSL proxy CA revocation check - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01_httpd_ssl_sslproxycarevocationfile",
+      "name": "HTTPNode01_httpd_ssl_sslproxycarevocationfile",
       "type": "string",
       "description": "SSL proxy CA revocation file",
       "default": "PleaseProvide",
       "hidden": false,
-      "label": "SSL proxy CA revocation file - HttpdNode01",
+      "label": "SSL proxy CA revocation file - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01_httpd_ssl_sslproxycacertificatefile",
+      "name": "HTTPNode01_httpd_ssl_sslproxycacertificatefile",
       "type": "string",
       "description": "SSL proxy Certificate file name",
       "default": "PleaseProvide",
       "hidden": false,
-      "label": "SSL proxy Certificate file name - HttpdNode01",
+      "label": "SSL proxy Certificate file name - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01_httpd_ssl_sslproxycacertificatepath",
+      "name": "HTTPNode01_httpd_ssl_sslproxycacertificatepath",
       "type": "string",
       "description": "SSL proxy Certificate file path",
       "default": "PleaseProvide",
       "hidden": false,
-      "label": "SSL proxy Certificate file path - HttpdNode01",
+      "label": "SSL proxy Certificate file path - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01-name",
+      "name": "HTTPNode01-name",
       "type": "string",
       "description": "Short hostname of virtual machine",
       "hidden": false,
-      "label": "Short hostname - HttpdNode01",
+      "label": "Short hostname - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
+      "immutable_after_create": true,
       "group_name": "virtualmachine"
     },
     {
-      "name": "HttpdNode01_httpd_virtualhosts_default_https_server_vhost_type",
+      "name": "HTTPNode01_httpd_virtualhosts_default_https_server_vhost_type",
       "type": "string",
       "description": "Specify type of virtual host for HTTP communication in HTTP server",
       "default": "name_based",
       "hidden": false,
-      "label": "Type of Virtual Host for HTTP communication - HttpdNode01",
+      "label": "Type of Virtual Host for HTTP communication - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01_httpd_virtualhosts_default_https_server_global_ssl_config",
+      "name": "HTTPNode01_httpd_virtualhosts_default_http_server_global_ssl_config",
       "type": "string",
       "description": "Use default global configuration for HTTPS communication in HTTP server",
       "default": "true",
       "hidden": false,
-      "label": "Use Default Global Configuration for HTTPS Communication - HttpdNode01",
+      "label": "Use Default Global Configuration for HTTPS Communication - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01_httpd_virtualhosts_default_http_server_global_ssl_config",
+      "name": "HTTPNode01_httpd_virtualhosts_default_https_server_global_ssl_config",
       "type": "string",
       "description": "Use default global configuration for HTTPS communication in HTTP server",
       "default": "true",
       "hidden": false,
-      "label": "Use Default Global Configuration for HTTPS Communication - HttpdNode01",
+      "label": "Use Default Global Configuration for HTTPS Communication - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01_httpd_os_users_web_content_owner_ldap_user",
+      "name": "HTTPNode01_httpd_os_users_web_content_owner_ldap_user",
       "type": "string",
       "description": "Use LDAP to authenticate Web Content Owner account on Linux HTTP server as well as web site logins",
       "default": "false",
       "hidden": true,
-      "label": "Use LDAP for Authentication - HttpdNode01",
+      "label": "Use LDAP for Authentication - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01-mgmt-network-public",
+      "name": "HTTPNode01-mgmt-network-public",
       "type": "string",
       "description": "Expose and use public IP of virtual machine for internal communication",
       "default": "true",
       "hidden": false,
-      "label": "Use Public Management Network - HttpdNode01",
+      "label": "Use Public Management Network",
       "secured": false,
       "options": [
         {
@@ -1080,34 +1049,56 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "virtualmachine"
     },
     {
-      "name": "HttpdNode01_httpd_os_users_web_content_owner_name",
+      "name": "HTTPNode01_httpd_os_users_web_content_owner_name",
       "type": "string",
       "description": "User ID of web content owner to be configured in HTTP server",
       "default": "webmaster",
       "hidden": false,
-      "label": "User Name of HTTP Web Content Owner - HttpdNode01",
+      "label": "User Name of HTTP Web Content Owner - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
     },
     {
-      "name": "HttpdNode01_httpd_virtualhosts_default_http_server_server_name",
+      "name": "HTTPNode01_httpd_virtualhosts_default_http_server_server_name",
       "type": "string",
       "description": "Vhost server name for directing requests",
       "default": "default_http_server",
       "hidden": false,
-      "label": "Virtual Host server name for directing requests - HttpdNode01",
+      "label": "Virtual Host server name for directing requests - HTTPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpdnode01"
+      "group_name": "httpnode01"
+    },
+    {
+      "name": "HTTPNode01_local_disk",
+      "type": "string",
+      "description": "User local disk or SAN disk",
+      "default": "false",
+      "hidden": false,
+      "label": "IBMCloud - Local / SAN Disk - HTTPNode01",
+      "secured": false,
+      "options": [
+        {
+          "value": "true",
+          "label": "True"
+        },
+        {
+          "value": "false",
+          "label": "False",
+          "default": "true"
+        }
+      ],
+      "required": true,
+      "immutable": false,
+      "group_name": "cloud"
     },
     {
       "name": "ibm_pm_private_ssh_key",
@@ -1143,6 +1134,7 @@
       "secured": false,
       "required": true,
       "immutable": false,
+      "immutable_after_create": true,
       "group_name": "ssh_keys"
     },
     {
@@ -1160,7 +1152,7 @@
   ],
   "template_output_params": [
     {
-      "name": "HttpdNode01_ip",
+      "name": "HTTPNode01_ip",
       "label": "IP Addresss",
       "description": "The Public and Public IP address",
       "type": "string",
@@ -1169,7 +1161,7 @@
       "group_name": "content_template_output"
     },
     {
-      "name": "HttpdNode01_name",
+      "name": "HTTPNode01_name",
       "label": "Node Name",
       "description": "The chef node name",
       "type": "string",
@@ -1178,7 +1170,7 @@
       "group_name": "content_template_output"
     },
     {
-      "name": "HttpdNode01_roles",
+      "name": "HTTPNode01_roles",
       "label": "Chef Roles",
       "description": "The chef roles deployed",
       "type": "string",
