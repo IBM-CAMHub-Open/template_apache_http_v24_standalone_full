@@ -330,8 +330,15 @@ variable "HTTPNode01_httpd_virtualhosts_default_http_server_error_log" {
 #Variable : HTTPNode01_httpd_virtualhosts_default_http_server_global_ssl_config
 variable "HTTPNode01_httpd_virtualhosts_default_http_server_global_ssl_config" {
   type = "string"
-  description = "Use default global configuration for HTTPS communication in HTTP server"
+  description = "Use default global configuration for HTTP communication in HTTP server"
   default = "true"
+}
+
+#Variable : HTTPNode01_httpd_virtualhosts_default_http_server_proxy_enabled
+variable "HTTPNode01_httpd_virtualhosts_default_http_server_proxy_enabled" {
+  type = "string"
+  description = "Enable proxy usage for virtual host for HTTP Communication in HTTP server"
+  default = "false"
 }
 
 #Variable : HTTPNode01_httpd_virtualhosts_default_http_server_server_admin
@@ -372,28 +379,28 @@ variable "HTTPNode01_httpd_virtualhosts_default_http_server_vhost_type" {
 #Variable : HTTPNode01_httpd_virtualhosts_default_https_server_custom_log
 variable "HTTPNode01_httpd_virtualhosts_default_https_server_custom_log" {
   type = "string"
-  description = "Vhost custom log dir"
+  description = "HTTPS Virtual host custom log dir"
   default = "default_https_server_custom_log"
 }
 
 #Variable : HTTPNode01_httpd_virtualhosts_default_https_server_custom_log_format
 variable "HTTPNode01_httpd_virtualhosts_default_https_server_custom_log_format" {
   type = "string"
-  description = "Vhost custom log format"
+  description = "HTTPS Virtual host custom log format"
   default = "combined"
 }
 
 #Variable : HTTPNode01_httpd_virtualhosts_default_https_server_document_root
 variable "HTTPNode01_httpd_virtualhosts_default_https_server_document_root" {
   type = "string"
-  description = "Vhost document root"
+  description = "HTTPS virtual host document root"
   default = "/var/www/default_https_server"
 }
 
 #Variable : HTTPNode01_httpd_virtualhosts_default_https_server_error_log
 variable "HTTPNode01_httpd_virtualhosts_default_https_server_error_log" {
   type = "string"
-  description = "Vhost error log dir"
+  description = "HTTPS Virtual host error log dir"
   default = "default_https_server_error_log"
 }
 
@@ -407,7 +414,7 @@ variable "HTTPNode01_httpd_virtualhosts_default_https_server_global_ssl_config" 
 #Variable : HTTPNode01_httpd_virtualhosts_default_https_server_log_dir
 variable "HTTPNode01_httpd_virtualhosts_default_https_server_log_dir" {
   type = "string"
-  description = "Vhost log dir"
+  description = "HTTPS virtual host log dir"
   default = "/var/log/httpd"
 }
 
@@ -421,21 +428,21 @@ variable "HTTPNode01_httpd_virtualhosts_default_https_server_proxy_enabled" {
 #Variable : HTTPNode01_httpd_virtualhosts_default_https_server_server_admin
 variable "HTTPNode01_httpd_virtualhosts_default_https_server_server_admin" {
   type = "string"
-  description = "Vhost Server admin"
+  description = "HTTPS Virtual host server admin"
   default = "webmaster"
 }
 
 #Variable : HTTPNode01_httpd_virtualhosts_default_https_server_server_name
 variable "HTTPNode01_httpd_virtualhosts_default_https_server_server_name" {
   type = "string"
-  description = "Vhost server name for directing requests"
+  description = "HTTPS Virtual host server name for directing requests"
   default = "default_https_server"
 }
 
 #Variable : HTTPNode01_httpd_virtualhosts_default_https_server_ssl_enabled
 variable "HTTPNode01_httpd_virtualhosts_default_https_server_ssl_enabled" {
   type = "string"
-  description = "Enable SSL for virtual host for HTTP communication in HTTP server"
+  description = "HTTPS - Enable SSL for virtual host for HTTP communication in HTTP server"
   default = "true"
 }
 
@@ -449,7 +456,7 @@ variable "HTTPNode01_httpd_virtualhosts_default_https_server_vhost_listen" {
 #Variable : HTTPNode01_httpd_virtualhosts_default_https_server_vhost_type
 variable "HTTPNode01_httpd_virtualhosts_default_https_server_vhost_type" {
   type = "string"
-  description = "Specify type of virtual host for HTTP communication in HTTP server"
+  description = "Specify type of virtual host for HTTPS communication in HTTPS server"
   default = "name_based"
 }
 
@@ -469,6 +476,8 @@ variable "HTTPNode01-mgmt-network-public" {
   default = "true"
 }
 
+
+##### ungrouped variables #####
 ##### domain name #####
 variable "runtime_domain" {
   description = "domain name"
@@ -763,6 +772,7 @@ resource "camc_softwaredeploy" "HTTPNode01_httpd24-ssl-vhosts" {
           "document_root": "${var.HTTPNode01_httpd_virtualhosts_default_http_server_document_root}",
           "error_log": "${var.HTTPNode01_httpd_virtualhosts_default_http_server_error_log}",
           "global_ssl_config": "${var.HTTPNode01_httpd_virtualhosts_default_http_server_global_ssl_config}",
+          "proxy_enabled": "${var.HTTPNode01_httpd_virtualhosts_default_http_server_proxy_enabled}",
           "server_admin": "${var.HTTPNode01_httpd_virtualhosts_default_http_server_server_admin}",
           "server_name": "${var.HTTPNode01_httpd_virtualhosts_default_http_server_server_name}",
           "ssl_enabled": "${var.HTTPNode01_httpd_virtualhosts_default_http_server_ssl_enabled}",

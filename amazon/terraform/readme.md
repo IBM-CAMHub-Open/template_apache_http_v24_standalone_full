@@ -1,5 +1,5 @@
 # Template - Apache HTTP Server full deployment on a single virtual machine
-Template Version - 1.0.2
+Template Version - 1.0
 
 ## Description
 
@@ -13,7 +13,7 @@ This template deploys Apache HTTP Server with a full configuration on a Linux vi
 <br>
 ### Template Version
 
-1.0.2<br>
+1.0<br>
 <br>
 ### Operating Systems Supported
 
@@ -87,12 +87,12 @@ The following table describes the nodes and relevant software component deployed
     <th>Description</th>
   </tr>
   <tr>
-    <td>HttpdNode01</code></td>
+    <td>HTTPNode01</code></td>
     <td>httpd24-ssl-vhosts</code></td>
     <td></code></td>
   </tr>
   <tr>
-    <td>HttpdNode01</code></td>
+    <td>HTTPNode01</code></td>
     <td>httpd24-base-install</code></td>
     <td></code></td>
   </tr>
