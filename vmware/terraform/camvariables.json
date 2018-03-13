@@ -1,11 +1,11 @@
 {
-  "input_namespaces": [
+  "input_datatypes": [
     {
       "name": "advanced_content_runtime_chef",
       "label": "Advanced Content Runtime"
     }
   ],
-  "output_namespace": "content_template_output",
+  "output_datatype": "content_template_output",
   "input_groups": [
     {
       "name": "cloud",
@@ -35,6 +35,17 @@
     }
   ],
   "template_input_params": [
+    {
+      "name": "ibm_stack_id",
+      "type": "string",
+      "description": "A unique stack id.",
+      "hidden": true,
+      "label": "A unique stack id.",
+      "secured": false,
+      "required": true,
+      "immutable": false,
+      "group_name": "environment"
+    },
     {
       "name": "ibm_stack_name",
       "type": "string",
@@ -137,7 +148,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_proxy_ProxyPreserveHost",
@@ -162,7 +172,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_ssl_sslcompression",
@@ -187,7 +196,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_vhosts_enabled",
@@ -212,7 +220,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_os_users_web_content_owner_gid",
@@ -226,7 +233,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_http_server_custom_log",
@@ -240,7 +246,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_http_server_custom_log_format",
@@ -254,7 +259,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_http_server_document_root",
@@ -268,7 +272,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_http_server_error_log",
@@ -282,7 +285,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_http_server_server_admin",
@@ -296,7 +298,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_http_server_proxy_enabled",
@@ -321,7 +322,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_http_server_ssl_enabled",
@@ -346,7 +346,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_http_server_vhost_listen",
@@ -360,7 +359,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_http_server_global_ssl_config",
@@ -385,7 +383,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_http_server_server_name",
@@ -399,7 +396,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_http_server_vhost_type",
@@ -413,7 +409,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_log_dir",
@@ -427,7 +422,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_server_admin",
@@ -441,7 +435,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_document_root",
@@ -455,7 +448,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_os_users_web_content_owner_shell",
@@ -469,7 +461,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_listen",
@@ -483,7 +474,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_log_level",
@@ -497,7 +487,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_data_dir_mode",
@@ -511,7 +500,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_version",
@@ -525,7 +513,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_https_server_custom_log",
@@ -539,7 +526,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_https_server_custom_log_format",
@@ -553,7 +539,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_https_server_error_log",
@@ -567,7 +552,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_https_server_log_dir",
@@ -581,7 +565,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_https_server_server_admin",
@@ -595,7 +578,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_https_server_proxy_enabled",
@@ -620,7 +602,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_https_server_server_name",
@@ -634,7 +615,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_https_server_ssl_enabled",
@@ -659,7 +639,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_https_server_vhost_listen",
@@ -673,7 +652,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_https_server_global_ssl_config",
@@ -698,7 +676,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_https_server_vhost_type",
@@ -712,7 +689,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_https_server_document_root",
@@ -726,7 +702,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_server_name",
@@ -740,7 +715,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_os_users_web_content_owner_home",
@@ -754,7 +728,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "ibm_pm_access_token",
@@ -789,6 +762,7 @@
       "secured": true,
       "required": true,
       "immutable": true,
+      "immutable_after_create": true,
       "group_name": "environment",
       "default": "${advanced_content_runtime_chef.ibm_sw_repo_password}"
     },
@@ -801,6 +775,7 @@
       "secured": false,
       "required": true,
       "immutable": true,
+      "immutable_after_create": true,
       "group_name": "environment",
       "default": "${advanced_content_runtime_chef.ibm_sw_repo}"
     },
@@ -814,6 +789,7 @@
       "secured": false,
       "required": true,
       "immutable": true,
+      "immutable_after_create": true,
       "group_name": "environment"
     },
     {
@@ -874,6 +850,18 @@
       "default": "${advanced_content_runtime_chef.ibm_pm_public_ssh_key}"
     },
     {
+      "name": "HTTPNode01_root_disk_size",
+      "type": "string",
+      "description": "Size of template disk volume. Should be equal to template's disk size",
+      "default": "25",
+      "hidden": false,
+      "label": "Root Disk Size - HTTPNode01",
+      "secured": false,
+      "required": true,
+      "immutable": false,
+      "group_name": "virtualmachine"
+    },
+    {
       "name": "HTTPNode01_httpd_ssl_sslproxycarevocationcheck",
       "type": "string",
       "description": "SSL proxy CA revocation check",
@@ -885,7 +873,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_ssl_sslproxycarevocationfile",
@@ -899,7 +886,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_ssl_sslproxycacertificatefile",
@@ -913,7 +899,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_ssl_sslproxycacertificatepath",
@@ -927,7 +912,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01-name",
@@ -941,79 +925,12 @@
       "group_name": "virtualmachine"
     },
     {
-      "name": "HTTPNode01_root_disk_controller_type",
-      "type": "string",
-      "description": "Type of template disk controller",
-      "default": "scsi",
-      "hidden": false,
-      "label": "Template Disk Controller - HTTPNode01",
-      "secured": false,
-      "options": [
-        {
-          "value": "scsi",
-          "label": "scsi",
-          "default": "true"
-        },
-        {
-          "value": "scsi-lsi-parallel",
-          "label": "scsi-lsi-parallel"
-        },
-        {
-          "value": "scsi-buslogic",
-          "label": "scsi-buslogic"
-        },
-        {
-          "value": "scsi-paravirtual",
-          "label": "scsi-paravirtual"
-        },
-        {
-          "value": "scsi-isi-sas",
-          "label": "scsi-isi-sas"
-        },
-        {
-          "value": "ide",
-          "label": "ide"
-        }
-      ],
-      "required": true,
-      "immutable": false,
-      "group_name": "virtualmachine"
-    },
-    {
       "name": "HTTPNode01_root_disk_datastore",
       "type": "string",
       "description": "Data store or storage cluster name for target virtual machine's disks",
       "hidden": false,
       "label": "Template Disk Datastore - HTTPNode01",
       "secured": false,
-      "required": true,
-      "immutable": false,
-      "group_name": "virtualmachine"
-    },
-    {
-      "name": "HTTPNode01_root_disk_type",
-      "type": "string",
-      "description": "Type of template disk volume",
-      "default": "eager_zeroed",
-      "hidden": false,
-      "label": "Template Disk Type - HTTPNode01",
-      "secured": false,
-      "options": [
-        {
-          "value": "eager_zeroed",
-          "label": "Thick Provision Eager Zeroed",
-          "default": "true"
-        },
-        {
-          "value": "lazy",
-          "label": "Thick Provision Lazy Zeroed"
-        },
-        {
-          "value": "thin",
-          "label": "Thin Provision",
-          "group_name": "virtualmachine"
-        }
-      ],
       "required": true,
       "immutable": false,
       "group_name": "virtualmachine"
@@ -1041,7 +958,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_os_users_web_content_owner_name",
@@ -1055,7 +971,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_ipv4_gateway",
@@ -1132,7 +1047,7 @@
       "hidden": false,
       "label": "vSphere Cluster - HTTPNode01",
       "secured": false,
-      "required": true,
+      "required": false,
       "immutable": false,
       "group_name": "cloud"
     },
@@ -1143,7 +1058,7 @@
       "hidden": false,
       "label": "vSphere Datacenter - HTTPNode01",
       "secured": false,
-      "required": true,
+      "required": false,
       "immutable": false,
       "group_name": "cloud"
     },
@@ -1154,7 +1069,7 @@
       "hidden": false,
       "label": "vSphere Folder Name - HTTPNode01",
       "secured": false,
-      "required": true,
+      "required": false,
       "immutable": false,
       "group_name": "cloud"
     },
@@ -1177,6 +1092,17 @@
           "default": "e1000"
         }
       ],
+      "required": true,
+      "immutable": false,
+      "group_name": "virtualmachine"
+    },
+    {
+      "name": "HTTPNode01_resource_pool",
+      "type": "string",
+      "description": "Target vSphere Resource Pool to host the virtual machine",
+      "hidden": false,
+      "label": "vSphere Resource Pool - HTTPNode01",
+      "secured": false,
       "required": true,
       "immutable": false,
       "group_name": "virtualmachine"

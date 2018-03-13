@@ -1,7 +1,7 @@
 {
     "name": "Apache HTTP Server full deployment on a single virtual machine - Amazon EC2",
     "description": "This template deploys Apache HTTP Server with a full configuration on a Linux virtual machine including virtual host conf and enables SSL support.",
-    "version": "1.0.2",
+    "version": "2.0",
     "imageUrl": "",
     "image": "",
     "type": "chefcontent",
@@ -29,9 +29,6 @@
       "bullets": [{
     "title": "Clouds",
     "description": " Amazon<br>"},
-{
-    "title": "Template Version",
-    "description": "1.0.2<br>"},
 {
     "title": "Operating Systems Supported",
     "description": "Red Hat Enterprise Linux 7<br>Ubuntu 16.04 LTS<br>"},

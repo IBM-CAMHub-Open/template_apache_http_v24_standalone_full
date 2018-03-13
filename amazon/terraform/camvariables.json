@@ -1,11 +1,11 @@
 {
-  "input_namespaces": [
+  "input_datatypes": [
     {
       "name": "advanced_content_runtime_chef",
       "label": "Advanced Content Runtime"
     }
   ],
-  "output_namespace": "content_template_output",
+  "output_datatype": "content_template_output",
   "input_groups": [
     {
       "name": "cloud",
@@ -35,6 +35,17 @@
     }
   ],
   "template_input_params": [
+    {
+      "name": "ibm_stack_id",
+      "type": "string",
+      "description": "A unique stack id.",
+      "hidden": true,
+      "label": "A unique stack id.",
+      "secured": false,
+      "required": true,
+      "immutable": false,
+      "group_name": "environment"
+    },
     {
       "name": "ibm_stack_name",
       "type": "string",
@@ -156,7 +167,7 @@
       "name": "HTTPNode01_root_block_device_volume_size",
       "type": "string",
       "description": "AWS Root Block Device Volume Size",
-      "default": 25,
+      "default": "25",
       "hidden": false,
       "label": "AWS Root Block Device Volume Size",
       "secured": false,
@@ -274,7 +285,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_proxy_ProxyPreserveHost",
@@ -299,7 +309,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_ssl_sslcompression",
@@ -324,7 +333,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_vhosts_enabled",
@@ -349,7 +357,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_os_users_web_content_owner_gid",
@@ -363,7 +370,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_http_server_custom_log",
@@ -377,7 +383,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_http_server_custom_log_format",
@@ -391,7 +396,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_http_server_document_root",
@@ -405,7 +409,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_http_server_error_log",
@@ -419,7 +422,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_http_server_server_admin",
@@ -433,7 +435,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_http_server_proxy_enabled",
@@ -458,7 +459,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_http_server_ssl_enabled",
@@ -483,7 +483,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_http_server_vhost_listen",
@@ -497,7 +496,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_http_server_global_ssl_config",
@@ -522,7 +520,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_http_server_server_name",
@@ -536,7 +533,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_http_server_vhost_type",
@@ -550,7 +546,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_log_dir",
@@ -564,7 +559,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_server_admin",
@@ -578,7 +572,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_document_root",
@@ -592,7 +585,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_os_users_web_content_owner_shell",
@@ -606,7 +598,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_listen",
@@ -620,7 +611,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_log_level",
@@ -634,7 +624,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_data_dir_mode",
@@ -648,7 +637,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_version",
@@ -662,7 +650,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01-flavor",
@@ -688,7 +675,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_https_server_custom_log_format",
@@ -702,7 +688,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_https_server_error_log",
@@ -716,7 +701,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_https_server_log_dir",
@@ -730,7 +714,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_https_server_server_admin",
@@ -744,7 +727,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_https_server_proxy_enabled",
@@ -769,7 +751,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_https_server_server_name",
@@ -783,7 +764,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_https_server_ssl_enabled",
@@ -808,7 +788,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_https_server_vhost_listen",
@@ -822,7 +801,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_https_server_global_ssl_config",
@@ -847,7 +825,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_https_server_vhost_type",
@@ -861,7 +838,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_virtualhosts_default_https_server_document_root",
@@ -875,7 +851,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_server_name",
@@ -889,7 +864,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_os_users_web_content_owner_home",
@@ -903,7 +877,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "ibm_pm_access_token",
@@ -938,6 +911,7 @@
       "secured": true,
       "required": true,
       "immutable": true,
+      "immutable_after_create": true,
       "group_name": "environment",
       "default": "${advanced_content_runtime_chef.ibm_sw_repo_password}"
     },
@@ -950,6 +924,7 @@
       "secured": false,
       "required": true,
       "immutable": true,
+      "immutable_after_create": true,
       "group_name": "environment",
       "default": "${advanced_content_runtime_chef.ibm_sw_repo}"
     },
@@ -963,6 +938,7 @@
       "secured": false,
       "required": true,
       "immutable": true,
+      "immutable_after_create": true,
       "group_name": "environment"
     },
     {
@@ -1000,7 +976,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_ssl_sslproxycarevocationfile",
@@ -1014,7 +989,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_ssl_sslproxycacertificatefile",
@@ -1028,7 +1002,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01_httpd_ssl_sslproxycacertificatepath",
@@ -1042,7 +1015,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
     },
     {
       "name": "HTTPNode01-name",
@@ -1078,7 +1050,19 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
-
+    },
+    {
+      "name": "HTTPNode01_httpd_os_users_web_content_owner_name",
+      "type": "string",
+      "description": "User ID of web content owner to be configured in HTTP server",
+      "default": "webmaster",
+      "hidden": false,
+      "label": "User Name of HTTP Web Content Owner - HTTPNode01",
+      "secured": false,
+      "required": true,
+      "immutable": false,
+      "immutable_after_create": true,
+      "group_name": "httpnode01"
     },
     {
       "name": "ibm_pm_private_ssh_key",
@@ -1091,6 +1075,18 @@
       "immutable": true,
       "group_name": "ssh_keys",
       "default": "${advanced_content_runtime_chef.ibm_pm_private_ssh_key}"
+    },
+    {
+      "name": "ibm_pm_public_ssh_key_name",
+      "type": "string",
+      "description": "Public CAMC SSH key name used to connect to the virtual guest.",
+      "hidden": true,
+      "label": "Public CAMC SSH key name used to connect to the virtual guest. - ssh_keys",
+      "secured": false,
+      "required": true,
+      "immutable": true,
+      "group_name": "ssh_keys",
+      "default": "${advanced_content_runtime_chef.ibm_pm_public_ssh_key_name}"
     },
     {
       "name": "HTTPNode01-mgmt-network-public",
@@ -1113,32 +1109,6 @@
       "required": true,
       "immutable": false,
       "group_name": "virtualmachine"
-    },
-    {
-      "name": "HTTPNode01_httpd_os_users_web_content_owner_name",
-      "type": "string",
-      "description": "User ID of web content owner to be configured in HTTP server",
-      "default": "webmaster",
-      "hidden": false,
-      "label": "User Name of HTTP Web Content Owner - HTTPNode01",
-      "secured": false,
-      "required": true,
-      "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "httpnode01"
-
-    },
-    {
-      "name": "ibm_pm_public_ssh_key_name",
-      "type": "string",
-      "description": "Public CAMC SSH key name used to connect to the virtual guest.",
-      "hidden": true,
-      "label": "Public CAMC SSH key name used to connect to the virtual guest. - ssh_keys",
-      "secured": false,
-      "required": true,
-      "immutable": true,
-      "group_name": "ssh_keys",
-      "default": "${advanced_content_runtime_chef.ibm_pm_public_ssh_key_name}"
     },
     {
       "name": "user_public_ssh_key",

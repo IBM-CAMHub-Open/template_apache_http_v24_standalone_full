@@ -1,20 +1,32 @@
 # =================================================================
-# Licensed Materials - Property of IBM
-# 5737-E67
-# @ Copyright IBM Corporation 2016, 2017 All Rights Reserved
-# US Government Users Restricted Rights - Use, duplication or disclosure
-# restricted by GSA ADP Schedule Contract with IBM Corp.
+# Copyright 2017 IBM Corporation
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+#	you may not use this file except in compliance with the License.
+#	You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+#	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 # =================================================================
 
 # This is a terraform generated template generated from apache_http_v24_standalone_full
 
 ##############################################################
-# Keys - CAMC (public/private) & optional User Key (public) 
+# Keys - CAMC (public/private) & optional User Key (public)
 ##############################################################
 variable "user_public_ssh_key" {
   type = "string"
   description = "User defined public SSH key used to connect to the virtual machine. The format must be in openSSH."
   default = "None"
+}
+
+variable "ibm_stack_id" {
+  description = "A unique stack id."
 }
 
 variable "ibm_pm_public_ssh_key" {
@@ -31,33 +43,48 @@ variable "allow_unverified_ssl" {
 }
 
 ##############################################################
-# Define the vsphere provider 
+# Define the vsphere provider
 ##############################################################
 provider "vsphere" {
   allow_unverified_ssl = "${var.allow_unverified_ssl}"
-  version = "~> 0.4"
+  version = "~> 1.3"
 }
 
 provider "camc" {
   version = "~> 0.1"
 }
 
-provider "random" {
-  version = "~> 1.0"
-}
-
-resource "random_id" "stack_id" {
-  byte_length = "16"
-}
-
 ##############################################################
-# Define pattern variables 
+# Define pattern variables
 ##############################################################
 ##### unique stack name #####
 variable "ibm_stack_name" {
   description = "A unique stack name."
 }
 
+##############################################################
+# Vsphere data for provider
+##############################################################
+data "vsphere_datacenter" "HTTPNode01_datacenter" {
+  name = "${var.HTTPNode01_datacenter}"
+}
+data "vsphere_datastore" "HTTPNode01_datastore" {
+  name = "${var.HTTPNode01_root_disk_datastore}"
+  datacenter_id = "${data.vsphere_datacenter.HTTPNode01_datacenter.id}"
+}
+data "vsphere_resource_pool" "HTTPNode01_resource_pool" {
+  name = "${var.HTTPNode01_resource_pool}"
+  datacenter_id = "${data.vsphere_datacenter.HTTPNode01_datacenter.id}"
+}
+data "vsphere_network" "HTTPNode01_network" {
+  name = "${var.HTTPNode01_network_interface_label}"
+  datacenter_id = "${data.vsphere_datacenter.HTTPNode01_datacenter.id}"
+}
+
+data "vsphere_virtual_machine" "HTTPNode01_template" {
+  name = "${var.HTTPNode01-image}"
+  datacenter_id = "${data.vsphere_datacenter.HTTPNode01_datacenter.id}"
+}
 
 ##### Environment variables #####
 #Variable : ibm_pm_access_token
@@ -422,8 +449,6 @@ variable "HTTPNode01_httpd_virtualhosts_default_https_server_vhost_type" {
 
 ##### virtualmachine variables #####
 
-##### ungrouped variables #####
-
 #########################################################
 ##### Resource : HTTPNode01
 #########################################################
@@ -457,6 +482,10 @@ variable "HTTPNode01_memory" {
 
 variable "HTTPNode01_cluster" {
   description = "Target vSphere cluster to host the virtual machine"
+}
+
+variable "HTTPNode01_resource_pool" {
+  description = "Target vSphere Resource Pool to host the virtual machine"
 }
 
 variable "HTTPNode01_dns_suffixes" {
@@ -494,50 +523,52 @@ variable "HTTPNode01_root_disk_datastore" {
   description = "Data store or storage cluster name for target virtual machine's disks"
 }
 
-variable "HTTPNode01_root_disk_type" {
-  type = "string"
-  description = "Type of template disk volume"
-  default = "eager_zeroed"
-}
-
-variable "HTTPNode01_root_disk_controller_type" {
-  type = "string"
-  description = "Type of template disk controller"
-  default = "scsi"
-}
-
 variable "HTTPNode01_root_disk_keep_on_remove" {
   type = "string"
   description = "Delete template disk volume when the virtual machine is deleted"
   default = "false"
 }
 
+variable "HTTPNode01_root_disk_size" {
+  description = "Size of template disk volume. Should be equal to template's disk size"
+  default = "25"
+}
+
 # vsphere vm
 resource "vsphere_virtual_machine" "HTTPNode01" {
   name = "${var.HTTPNode01-name}"
-  domain = "${var.HTTPNode01_domain}"
   folder = "${var.HTTPNode01_folder}"
-  datacenter = "${var.HTTPNode01_datacenter}"
-  vcpu = "${var.HTTPNode01_number_of_vcpu}"
+  num_cpus = "${var.HTTPNode01_number_of_vcpu}"
   memory = "${var.HTTPNode01_memory}"
-  cluster = "${var.HTTPNode01_cluster}"
-  dns_suffixes = "${var.HTTPNode01_dns_suffixes}"
-  dns_servers = "${var.HTTPNode01_dns_servers}"
+  resource_pool_id = "${data.vsphere_resource_pool.HTTPNode01_resource_pool.id}"
+  datastore_id = "${data.vsphere_datastore.HTTPNode01_datastore.id}"
+  guest_id = "${data.vsphere_virtual_machine.HTTPNode01_template.guest_id}"
+  clone {
+    template_uuid = "${data.vsphere_virtual_machine.HTTPNode01_template.id}"
+    customize {
+      linux_options {
+        domain = "${var.HTTPNode01_domain}"
+        host_name = "${var.HTTPNode01-name}"
+      }
+    network_interface {
+      ipv4_address = "${var.HTTPNode01_ipv4_address}"
+      ipv4_netmask = "${var.HTTPNode01_ipv4_prefix_length}"
+    }
+    ipv4_gateway = "${var.HTTPNode01_ipv4_gateway}"
+    dns_suffix_list = "${var.HTTPNode01_dns_suffixes}"
+    dns_server_list = "${var.HTTPNode01_dns_servers}"
+    }
+  }
 
   network_interface {
-    label = "${var.HTTPNode01_network_interface_label}"
-    ipv4_gateway = "${var.HTTPNode01_ipv4_gateway}"
-    ipv4_address = "${var.HTTPNode01_ipv4_address}"
-    ipv4_prefix_length = "${var.HTTPNode01_ipv4_prefix_length}"
+    network_id = "${data.vsphere_network.HTTPNode01_network.id}"
     adapter_type = "${var.HTTPNode01_adapter_type}"
   }
 
   disk {
-    type = "${var.HTTPNode01_root_disk_type}"
-    template = "${var.HTTPNode01-image}"
-    datastore = "${var.HTTPNode01_root_disk_datastore}"
+    label = "${var.HTTPNode01-name}.disk0"
+    size = "${var.HTTPNode01_root_disk_size}"
     keep_on_remove = "${var.HTTPNode01_root_disk_keep_on_remove}"
-    controller_type = "${var.HTTPNode01_root_disk_controller_type}"
   }
 
   # Specify the connection
@@ -551,11 +582,20 @@ resource "vsphere_virtual_machine" "HTTPNode01" {
     destination = "HTTPNode01_add_ssh_key.sh"
     content     = <<EOF
 # =================================================================
-# Licensed Materials - Property of IBM
-# 5737-E67
-# @ Copyright IBM Corporation 2016, 2017 All Rights Reserved
-# US Government Users Restricted Rights - Use, duplication or disclosure
-# restricted by GSA ADP Schedule Contract with IBM Corp.
+# Copyright 2017 IBM Corporation
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+#	you may not use this file except in compliance with the License.
+#	You may obtain a copy of the License at
+#
+#	  http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+#	WITHOUT
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 # =================================================================
 #!/bin/bash
 
@@ -629,17 +669,17 @@ resource "camc_bootstrap" "HTTPNode01_chef_bootstrap_comp" {
   data = <<EOT
 {
   "os_admin_user": "${var.HTTPNode01-os_admin_user}",
-  "stack_id": "${random_id.stack_id.hex}",
+  "stack_id": "${var.ibm_stack_id}",
   "environment_name": "_default",
-  "host_ip": "${vsphere_virtual_machine.HTTPNode01.network_interface.0.ipv4_address}",
+  "host_ip": "${vsphere_virtual_machine.HTTPNode01.clone.0.customize.0.network_interface.0.ipv4_address}",
   "node_name": "${var.HTTPNode01-name}",
   "node_attributes": {
     "ibm_internal": {
-      "stack_id": "${random_id.stack_id.hex}",
+      "stack_id": "${var.ibm_stack_id}",
       "stack_name": "${var.ibm_stack_name}",
       "vault": {
         "item": "secrets",
-        "name": "${random_id.stack_id.hex}"
+        "name": "${var.ibm_stack_id}"
       }
     }
   }
@@ -662,9 +702,9 @@ resource "camc_softwaredeploy" "HTTPNode01_httpd24-base-install" {
   data = <<EOT
 {
   "os_admin_user": "${var.HTTPNode01-os_admin_user}",
-  "stack_id": "${random_id.stack_id.hex}",
+  "stack_id": "${var.ibm_stack_id}",
   "environment_name": "_default",
-  "host_ip": "${vsphere_virtual_machine.HTTPNode01.network_interface.0.ipv4_address}",
+  "host_ip": "${vsphere_virtual_machine.HTTPNode01.clone.0.customize.0.network_interface.0.ipv4_address}",
   "node_name": "${var.HTTPNode01-name}",
   "runlist": "role[httpd24-base-install]",
   "node_attributes": {
@@ -704,7 +744,7 @@ resource "camc_softwaredeploy" "HTTPNode01_httpd24-base-install" {
         "sw_repo_password": "${var.ibm_sw_repo_password}"
       }
     },
-    "vault": "${random_id.stack_id.hex}"
+    "vault": "${var.ibm_stack_id}"
   }
 }
 EOT
@@ -725,9 +765,9 @@ resource "camc_softwaredeploy" "HTTPNode01_httpd24-ssl-vhosts" {
   data = <<EOT
 {
   "os_admin_user": "${var.HTTPNode01-os_admin_user}",
-  "stack_id": "${random_id.stack_id.hex}",
+  "stack_id": "${var.ibm_stack_id}",
   "environment_name": "_default",
-  "host_ip": "${vsphere_virtual_machine.HTTPNode01.network_interface.0.ipv4_address}",
+  "host_ip": "${vsphere_virtual_machine.HTTPNode01.clone.0.customize.0.network_interface.0.ipv4_address}",
   "node_name": "${var.HTTPNode01-name}",
   "runlist": "role[httpd24-ssl-vhosts]",
   "node_attributes": {
@@ -800,7 +840,7 @@ resource "camc_softwaredeploy" "HTTPNode01_httpd24-ssl-vhosts" {
         "sw_repo_password": "${var.ibm_sw_repo_password}"
       }
     },
-    "vault": "${random_id.stack_id.hex}"
+    "vault": "${var.ibm_stack_id}"
   }
 }
 EOT
@@ -821,14 +861,14 @@ resource "camc_vaultitem" "VaultItem" {
   "vault_content": {
     "item": "secrets",
     "values": {},
-    "vault": "${random_id.stack_id.hex}"
+    "vault": "${var.ibm_stack_id}"
   }
 }
 EOT
 }
 
 output "HTTPNode01_ip" {
-  value = "VM IP Address : ${vsphere_virtual_machine.HTTPNode01.network_interface.0.ipv4_address}"
+  value = "VM IP Address : ${vsphere_virtual_machine.HTTPNode01.clone.0.customize.0.network_interface.0.ipv4_address}"
 }
 
 output "HTTPNode01_name" {
@@ -840,6 +880,5 @@ output "HTTPNode01_roles" {
 }
 
 output "stack_id" {
-  value = "${random_id.stack_id.hex}"
+  value = "${var.ibm_stack_id}"
 }
-
