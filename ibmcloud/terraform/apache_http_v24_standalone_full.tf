@@ -17,7 +17,7 @@
 # This is a terraform generated template generated from apache_http_v24_standalone_full
 
 ##############################################################
-# Keys - CAMC (public/private) & optional User Key (public) 
+# Keys - CAMC (public/private) & optional User Key (public)
 ##############################################################
 variable "ibm_pm_public_ssh_key_name" {
   description = "Public CAMC SSH key name used to connect to the virtual guest."
@@ -38,19 +38,19 @@ variable "ibm_stack_id" {
 }
 
 ##############################################################
-# Define the ibm provider 
+# Define the ibm provider
 ##############################################################
 #define the ibm provider
 provider "ibm" {
-  version = "~> 0.5"
+  version = "~> 0.7"
 }
 
 provider "camc" {
-  version = "~> 0.1"
+  version = "~> 0.2"
 }
 
 ##############################################################
-# Reference public key in Devices>Manage>SSH Keys in SL console) 
+# Reference public key in Devices>Manage>SSH Keys in SL console)
 ##############################################################
 data "ibm_compute_ssh_key" "ibm_pm_public_key" {
   label = "${var.ibm_pm_public_ssh_key_name}"
@@ -58,7 +58,7 @@ data "ibm_compute_ssh_key" "ibm_pm_public_key" {
 }
 
 ##############################################################
-# Define pattern variables 
+# Define pattern variables
 ##############################################################
 ##### unique stack name #####
 variable "ibm_stack_name" {
@@ -830,4 +830,3 @@ output "HTTPNode01_roles" {
 output "stack_id" {
   value = "${var.ibm_stack_id}"
 }
-
