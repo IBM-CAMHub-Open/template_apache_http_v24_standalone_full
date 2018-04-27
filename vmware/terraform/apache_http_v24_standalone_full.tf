@@ -20,9 +20,9 @@
 # Keys - CAMC (public/private) & optional User Key (public)
 ##############################################################
 variable "user_public_ssh_key" {
-  type = "string"
+  type        = "string"
   description = "User defined public SSH key used to connect to the virtual machine. The format must be in openSSH."
-  default = "None"
+  default     = "None"
 }
 
 variable "ibm_stack_id" {
@@ -39,7 +39,7 @@ variable "ibm_pm_private_ssh_key" {
 
 variable "allow_unverified_ssl" {
   description = "Communication with vsphere server with self signed certificate"
-  default = "true"
+  default     = "true"
 }
 
 ##############################################################
@@ -47,7 +47,7 @@ variable "allow_unverified_ssl" {
 ##############################################################
 provider "vsphere" {
   allow_unverified_ssl = "${var.allow_unverified_ssl}"
-  version = "~> 1.3"
+  version              = "~> 1.3"
 }
 
 provider "camc" {
@@ -68,384 +68,385 @@ variable "ibm_stack_name" {
 data "vsphere_datacenter" "HTTPNode01_datacenter" {
   name = "${var.HTTPNode01_datacenter}"
 }
+
 data "vsphere_datastore" "HTTPNode01_datastore" {
-  name = "${var.HTTPNode01_root_disk_datastore}"
+  name          = "${var.HTTPNode01_root_disk_datastore}"
   datacenter_id = "${data.vsphere_datacenter.HTTPNode01_datacenter.id}"
 }
+
 data "vsphere_resource_pool" "HTTPNode01_resource_pool" {
-  name = "${var.HTTPNode01_resource_pool}"
+  name          = "${var.HTTPNode01_resource_pool}"
   datacenter_id = "${data.vsphere_datacenter.HTTPNode01_datacenter.id}"
 }
+
 data "vsphere_network" "HTTPNode01_network" {
-  name = "${var.HTTPNode01_network_interface_label}"
+  name          = "${var.HTTPNode01_network_interface_label}"
   datacenter_id = "${data.vsphere_datacenter.HTTPNode01_datacenter.id}"
 }
 
 data "vsphere_virtual_machine" "HTTPNode01_template" {
-  name = "${var.HTTPNode01-image}"
+  name          = "${var.HTTPNode01-image}"
   datacenter_id = "${data.vsphere_datacenter.HTTPNode01_datacenter.id}"
 }
 
 ##### Environment variables #####
 #Variable : ibm_pm_access_token
 variable "ibm_pm_access_token" {
-  type = "string"
+  type        = "string"
   description = "IBM Pattern Manager Access Token"
 }
 
 #Variable : ibm_pm_service
 variable "ibm_pm_service" {
-  type = "string"
+  type        = "string"
   description = "IBM Pattern Manager Service"
 }
 
 #Variable : ibm_sw_repo
 variable "ibm_sw_repo" {
-  type = "string"
+  type        = "string"
   description = "IBM Software Repo Root (https://<hostname>:<port>)"
 }
 
 #Variable : ibm_sw_repo_password
 variable "ibm_sw_repo_password" {
-  type = "string"
+  type        = "string"
   description = "IBM Software Repo Password"
 }
 
 #Variable : ibm_sw_repo_user
 variable "ibm_sw_repo_user" {
-  type = "string"
+  type        = "string"
   description = "IBM Software Repo Username"
-  default = "repouser"
+  default     = "repouser"
 }
-
 
 ##### HTTPNode01 variables #####
 #Variable : HTTPNode01-image
 variable "HTTPNode01-image" {
-  type = "string"
+  type        = "string"
   description = "Operating system image id / template that should be used when creating the virtual image"
 }
 
 #Variable : HTTPNode01-name
 variable "HTTPNode01-name" {
-  type = "string"
+  type        = "string"
   description = "Short hostname of virtual machine"
 }
 
 #Variable : HTTPNode01-os_admin_user
 variable "HTTPNode01-os_admin_user" {
-  type = "string"
+  type        = "string"
   description = "Name of the admin user account in the virtual machine that will be accessed via SSH"
 }
 
 #Variable : HTTPNode01_httpd_data_dir_mode
 variable "HTTPNode01_httpd_data_dir_mode" {
-  type = "string"
+  type        = "string"
   description = "OS Permisssions of data folders"
-  default = "0755"
+  default     = "0755"
 }
 
 #Variable : HTTPNode01_httpd_document_root
 variable "HTTPNode01_httpd_document_root" {
-  type = "string"
+  type        = "string"
   description = "File System Location of the Document Root"
-  default = "/var/www/html5"
+  default     = "/var/www/html5"
 }
 
 #Variable : HTTPNode01_httpd_listen
 variable "HTTPNode01_httpd_listen" {
-  type = "string"
+  type        = "string"
   description = "Listening port to be configured in HTTP server"
-  default = "8080"
+  default     = "8080"
 }
 
 #Variable : HTTPNode01_httpd_log_dir
 variable "HTTPNode01_httpd_log_dir" {
-  type = "string"
+  type        = "string"
   description = "Directory where HTTP Server logs will be sent"
-  default = "/var/log/httpd"
+  default     = "/var/log/httpd"
 }
 
 #Variable : HTTPNode01_httpd_log_level
 variable "HTTPNode01_httpd_log_level" {
-  type = "string"
+  type        = "string"
   description = "Log levels of the http process"
-  default = "info"
+  default     = "info"
 }
 
 #Variable : HTTPNode01_httpd_os_users_web_content_owner_gid
 variable "HTTPNode01_httpd_os_users_web_content_owner_gid" {
-  type = "string"
+  type        = "string"
   description = "Group ID of web content owner to be configured in HTTP server"
-  default = "webmaster"
+  default     = "webmaster"
 }
 
 #Variable : HTTPNode01_httpd_os_users_web_content_owner_home
 variable "HTTPNode01_httpd_os_users_web_content_owner_home" {
-  type = "string"
+  type        = "string"
   description = "Home directory of web content owner to be configured in HTTP server"
-  default = "/home/webmaster"
+  default     = "/home/webmaster"
 }
 
 #Variable : HTTPNode01_httpd_os_users_web_content_owner_ldap_user
 variable "HTTPNode01_httpd_os_users_web_content_owner_ldap_user" {
-  type = "string"
+  type        = "string"
   description = "Use LDAP to authenticate Web Content Owner account on Linux HTTP server as well as web site logins"
-  default = "false"
+  default     = "false"
 }
 
 #Variable : HTTPNode01_httpd_os_users_web_content_owner_name
 variable "HTTPNode01_httpd_os_users_web_content_owner_name" {
-  type = "string"
+  type        = "string"
   description = "User ID of web content owner to be configured in HTTP server"
-  default = "webmaster"
+  default     = "webmaster"
 }
 
 #Variable : HTTPNode01_httpd_os_users_web_content_owner_shell
 variable "HTTPNode01_httpd_os_users_web_content_owner_shell" {
-  type = "string"
+  type        = "string"
   description = "Default shell configured on Linux server"
-  default = "/bin/bash"
+  default     = "/bin/bash"
 }
 
 #Variable : HTTPNode01_httpd_php_mod_enabled
 variable "HTTPNode01_httpd_php_mod_enabled" {
-  type = "string"
+  type        = "string"
   description = "Enable PHP in Apache on Linux by Loading the Module"
-  default = "true"
+  default     = "true"
 }
 
 #Variable : HTTPNode01_httpd_proxy_ProxyPreserveHost
 variable "HTTPNode01_httpd_proxy_ProxyPreserveHost" {
-  type = "string"
+  type        = "string"
   description = "Instruct the reverse proxy to preserve original host header from the client browser"
-  default = "On"
+  default     = "On"
 }
 
 #Variable : HTTPNode01_httpd_server_admin
 variable "HTTPNode01_httpd_server_admin" {
-  type = "string"
+  type        = "string"
   description = "Email Address of the Webmaster"
-  default = "webmaster@orpheus.ibm.com"
+  default     = "webmaster@orpheus.ibm.com"
 }
 
 #Variable : HTTPNode01_httpd_server_name
 variable "HTTPNode01_httpd_server_name" {
-  type = "string"
+  type        = "string"
   description = "The Name of the HTTP Server, normally the FQDN of server."
-  default = "orpheus.ibm.com"
+  default     = "orpheus.ibm.com"
 }
 
 #Variable : HTTPNode01_httpd_ssl_sslcompression
 variable "HTTPNode01_httpd_ssl_sslcompression" {
-  type = "string"
+  type        = "string"
   description = "Enable SSL compression within HTTP Server Configuration"
-  default = "Off"
+  default     = "Off"
 }
 
 #Variable : HTTPNode01_httpd_ssl_sslproxycacertificatefile
 variable "HTTPNode01_httpd_ssl_sslproxycacertificatefile" {
-  type = "string"
+  type        = "string"
   description = "SSL proxy Certificate file name"
-  default = "PleaseProvide"
+  default     = "PleaseProvide"
 }
 
 #Variable : HTTPNode01_httpd_ssl_sslproxycacertificatepath
 variable "HTTPNode01_httpd_ssl_sslproxycacertificatepath" {
-  type = "string"
+  type        = "string"
   description = "SSL proxy Certificate file path"
-  default = "PleaseProvide"
+  default     = "PleaseProvide"
 }
 
 #Variable : HTTPNode01_httpd_ssl_sslproxycarevocationcheck
 variable "HTTPNode01_httpd_ssl_sslproxycarevocationcheck" {
-  type = "string"
+  type        = "string"
   description = "SSL proxy CA revocation check"
-  default = "PleaseProvide"
+  default     = "PleaseProvide"
 }
 
 #Variable : HTTPNode01_httpd_ssl_sslproxycarevocationfile
 variable "HTTPNode01_httpd_ssl_sslproxycarevocationfile" {
-  type = "string"
+  type        = "string"
   description = "SSL proxy CA revocation file"
-  default = "PleaseProvide"
+  default     = "PleaseProvide"
 }
 
 #Variable : HTTPNode01_httpd_version
 variable "HTTPNode01_httpd_version" {
-  type = "string"
+  type        = "string"
   description = "Version of HTTP Server to be installed."
-  default = "2.4"
+  default     = "2.4"
 }
 
 #Variable : HTTPNode01_httpd_vhosts_enabled
 variable "HTTPNode01_httpd_vhosts_enabled" {
-  type = "string"
+  type        = "string"
   description = "Allow to configure virtual hosts to run multiple websites on the same HTTP server"
-  default = "false"
+  default     = "false"
 }
 
 #Variable : HTTPNode01_httpd_virtualhosts_default_http_server_custom_log
 variable "HTTPNode01_httpd_virtualhosts_default_http_server_custom_log" {
-  type = "string"
+  type        = "string"
   description = "Location of the HTTP Server Custom Log"
-  default = "default_http_server_custom_log"
+  default     = "default_http_server_custom_log"
 }
 
 #Variable : HTTPNode01_httpd_virtualhosts_default_http_server_custom_log_format
 variable "HTTPNode01_httpd_virtualhosts_default_http_server_custom_log_format" {
-  type = "string"
+  type        = "string"
   description = "Log Format of the Custom Log"
-  default = "combined"
+  default     = "combined"
 }
 
 #Variable : HTTPNode01_httpd_virtualhosts_default_http_server_document_root
 variable "HTTPNode01_httpd_virtualhosts_default_http_server_document_root" {
-  type = "string"
+  type        = "string"
   description = "Location of the Default Docuement Root"
-  default = "/var/www/default_http_server"
+  default     = "/var/www/default_http_server"
 }
 
 #Variable : HTTPNode01_httpd_virtualhosts_default_http_server_error_log
 variable "HTTPNode01_httpd_virtualhosts_default_http_server_error_log" {
-  type = "string"
+  type        = "string"
   description = "Location of the HTTP Server Error Log"
-  default = "default_http_server_error_log"
+  default     = "default_http_server_error_log"
 }
 
 #Variable : HTTPNode01_httpd_virtualhosts_default_http_server_global_ssl_config
 variable "HTTPNode01_httpd_virtualhosts_default_http_server_global_ssl_config" {
-  type = "string"
+  type        = "string"
   description = "Use default global configuration for HTTP communication in HTTP server"
-  default = "true"
+  default     = "true"
 }
 
 #Variable : HTTPNode01_httpd_virtualhosts_default_http_server_proxy_enabled
 variable "HTTPNode01_httpd_virtualhosts_default_http_server_proxy_enabled" {
-  type = "string"
+  type        = "string"
   description = "Enable proxy usage for virtual host for HTTP Communication in HTTP server"
-  default = "false"
+  default     = "false"
 }
 
 #Variable : HTTPNode01_httpd_virtualhosts_default_http_server_server_admin
 variable "HTTPNode01_httpd_virtualhosts_default_http_server_server_admin" {
-  type = "string"
+  type        = "string"
   description = "Email address of the Server Admin"
-  default = "webmaster"
+  default     = "webmaster"
 }
 
 #Variable : HTTPNode01_httpd_virtualhosts_default_http_server_server_name
 variable "HTTPNode01_httpd_virtualhosts_default_http_server_server_name" {
-  type = "string"
+  type        = "string"
   description = "Vhost server name for directing requests"
-  default = "default_http_server"
+  default     = "default_http_server"
 }
 
 #Variable : HTTPNode01_httpd_virtualhosts_default_http_server_ssl_enabled
 variable "HTTPNode01_httpd_virtualhosts_default_http_server_ssl_enabled" {
-  type = "string"
+  type        = "string"
   description = "Enable SSL for virtual host for HTTPS communication in HTTP server"
-  default = "false"
+  default     = "false"
 }
 
 #Variable : HTTPNode01_httpd_virtualhosts_default_http_server_vhost_listen
 variable "HTTPNode01_httpd_virtualhosts_default_http_server_vhost_listen" {
-  type = "string"
+  type        = "string"
   description = "Listening port configured in virtual host for HTTP communication in HTTP server"
-  default = "80"
+  default     = "80"
 }
 
 #Variable : HTTPNode01_httpd_virtualhosts_default_http_server_vhost_type
 variable "HTTPNode01_httpd_virtualhosts_default_http_server_vhost_type" {
-  type = "string"
+  type        = "string"
   description = "Allow to configure virtual hosts to run multiple websites on the same HTTP server"
-  default = "name_based"
+  default     = "name_based"
 }
 
 #Variable : HTTPNode01_httpd_virtualhosts_default_https_server_custom_log
 variable "HTTPNode01_httpd_virtualhosts_default_https_server_custom_log" {
-  type = "string"
+  type        = "string"
   description = "HTTPS Virtual host custom log dir"
-  default = "default_https_server_custom_log"
+  default     = "default_https_server_custom_log"
 }
 
 #Variable : HTTPNode01_httpd_virtualhosts_default_https_server_custom_log_format
 variable "HTTPNode01_httpd_virtualhosts_default_https_server_custom_log_format" {
-  type = "string"
+  type        = "string"
   description = "HTTPS Virtual host custom log format"
-  default = "combined"
+  default     = "combined"
 }
 
 #Variable : HTTPNode01_httpd_virtualhosts_default_https_server_document_root
 variable "HTTPNode01_httpd_virtualhosts_default_https_server_document_root" {
-  type = "string"
+  type        = "string"
   description = "HTTPS virtual host document root"
-  default = "/var/www/default_https_server"
+  default     = "/var/www/default_https_server"
 }
 
 #Variable : HTTPNode01_httpd_virtualhosts_default_https_server_error_log
 variable "HTTPNode01_httpd_virtualhosts_default_https_server_error_log" {
-  type = "string"
+  type        = "string"
   description = "HTTPS Virtual host error log dir"
-  default = "default_https_server_error_log"
+  default     = "default_https_server_error_log"
 }
 
 #Variable : HTTPNode01_httpd_virtualhosts_default_https_server_global_ssl_config
 variable "HTTPNode01_httpd_virtualhosts_default_https_server_global_ssl_config" {
-  type = "string"
+  type        = "string"
   description = "Use default global configuration for HTTPS communication in HTTP server"
-  default = "true"
+  default     = "true"
 }
 
 #Variable : HTTPNode01_httpd_virtualhosts_default_https_server_log_dir
 variable "HTTPNode01_httpd_virtualhosts_default_https_server_log_dir" {
-  type = "string"
+  type        = "string"
   description = "HTTPS virtual host log dir"
-  default = "/var/log/httpd"
+  default     = "/var/log/httpd"
 }
 
 #Variable : HTTPNode01_httpd_virtualhosts_default_https_server_proxy_enabled
 variable "HTTPNode01_httpd_virtualhosts_default_https_server_proxy_enabled" {
-  type = "string"
+  type        = "string"
   description = "Enable proxy configuration"
-  default = "true"
+  default     = "true"
 }
 
 #Variable : HTTPNode01_httpd_virtualhosts_default_https_server_server_admin
 variable "HTTPNode01_httpd_virtualhosts_default_https_server_server_admin" {
-  type = "string"
+  type        = "string"
   description = "HTTPS Virtual host server admin"
-  default = "webmaster"
+  default     = "webmaster"
 }
 
 #Variable : HTTPNode01_httpd_virtualhosts_default_https_server_server_name
 variable "HTTPNode01_httpd_virtualhosts_default_https_server_server_name" {
-  type = "string"
+  type        = "string"
   description = "HTTPS Virtual host server name for directing requests"
-  default = "default_https_server"
+  default     = "default_https_server"
 }
 
 #Variable : HTTPNode01_httpd_virtualhosts_default_https_server_ssl_enabled
 variable "HTTPNode01_httpd_virtualhosts_default_https_server_ssl_enabled" {
-  type = "string"
+  type        = "string"
   description = "HTTPS - Enable SSL for virtual host for HTTP communication in HTTP server"
-  default = "true"
+  default     = "true"
 }
 
 #Variable : HTTPNode01_httpd_virtualhosts_default_https_server_vhost_listen
 variable "HTTPNode01_httpd_virtualhosts_default_https_server_vhost_listen" {
-  type = "string"
+  type        = "string"
   description = "Listening port configured in virtual host for HTTPS communication in HTTP server"
-  default = "443"
+  default     = "443"
 }
 
 #Variable : HTTPNode01_httpd_virtualhosts_default_https_server_vhost_type
 variable "HTTPNode01_httpd_virtualhosts_default_https_server_vhost_type" {
-  type = "string"
+  type        = "string"
   description = "Specify type of virtual host for HTTPS communication in HTTPS server"
-  default = "name_based"
+  default     = "name_based"
 }
-
 
 ##### virtualmachine variables #####
 
@@ -454,7 +455,7 @@ variable "HTTPNode01_httpd_virtualhosts_default_https_server_vhost_type" {
 #########################################################
 
 variable "HTTPNode01-os_password" {
-  type = "string"
+  type        = "string"
   description = "Operating System Password for the Operating System User to access virtual machine"
 }
 
@@ -472,12 +473,12 @@ variable "HTTPNode01_domain" {
 
 variable "HTTPNode01_number_of_vcpu" {
   description = "Number of virtual CPU for the virtual machine, which is required to be a positive Integer"
-  default = "2"
+  default     = "2"
 }
 
 variable "HTTPNode01_memory" {
   description = "Memory assigned to the virtual machine in megabytes. This value is required to be an increment of 1024"
-  default = "2048"
+  default     = "2048"
 }
 
 variable "HTTPNode01_cluster" {
@@ -489,12 +490,12 @@ variable "HTTPNode01_resource_pool" {
 }
 
 variable "HTTPNode01_dns_suffixes" {
-  type = "list"
+  type        = "list"
   description = "Name resolution suffixes for the virtual network adapter"
 }
 
 variable "HTTPNode01_dns_servers" {
-  type = "list"
+  type        = "list"
   description = "DNS servers for the virtual network adapter"
 }
 
@@ -516,7 +517,7 @@ variable "HTTPNode01_ipv4_prefix_length" {
 
 variable "HTTPNode01_adapter_type" {
   description = "Network adapter type for vNIC Configuration"
-  default = "vmxnet3"
+  default     = "vmxnet3"
 }
 
 variable "HTTPNode01_root_disk_datastore" {
@@ -524,63 +525,69 @@ variable "HTTPNode01_root_disk_datastore" {
 }
 
 variable "HTTPNode01_root_disk_keep_on_remove" {
-  type = "string"
+  type        = "string"
   description = "Delete template disk volume when the virtual machine is deleted"
-  default = "false"
+  default     = "false"
 }
 
 variable "HTTPNode01_root_disk_size" {
   description = "Size of template disk volume. Should be equal to template's disk size"
-  default = "25"
+  default     = "25"
 }
 
 # vsphere vm
 resource "vsphere_virtual_machine" "HTTPNode01" {
-  name = "${var.HTTPNode01-name}"
-  folder = "${var.HTTPNode01_folder}"
-  num_cpus = "${var.HTTPNode01_number_of_vcpu}"
-  memory = "${var.HTTPNode01_memory}"
+  name             = "${var.HTTPNode01-name}"
+  folder           = "${var.HTTPNode01_folder}"
+  num_cpus         = "${var.HTTPNode01_number_of_vcpu}"
+  memory           = "${var.HTTPNode01_memory}"
   resource_pool_id = "${data.vsphere_resource_pool.HTTPNode01_resource_pool.id}"
-  datastore_id = "${data.vsphere_datastore.HTTPNode01_datastore.id}"
-  guest_id = "${data.vsphere_virtual_machine.HTTPNode01_template.guest_id}"
+  datastore_id     = "${data.vsphere_datastore.HTTPNode01_datastore.id}"
+  guest_id         = "${data.vsphere_virtual_machine.HTTPNode01_template.guest_id}"
+  scsi_type        = "${data.vsphere_virtual_machine.HTTPNode01_template.scsi_type}"
+
   clone {
     template_uuid = "${data.vsphere_virtual_machine.HTTPNode01_template.id}"
+
     customize {
       linux_options {
-        domain = "${var.HTTPNode01_domain}"
+        domain    = "${var.HTTPNode01_domain}"
         host_name = "${var.HTTPNode01-name}"
       }
-    network_interface {
-      ipv4_address = "${var.HTTPNode01_ipv4_address}"
-      ipv4_netmask = "${var.HTTPNode01_ipv4_prefix_length}"
-    }
-    ipv4_gateway = "${var.HTTPNode01_ipv4_gateway}"
-    dns_suffix_list = "${var.HTTPNode01_dns_suffixes}"
-    dns_server_list = "${var.HTTPNode01_dns_servers}"
+
+      network_interface {
+        ipv4_address = "${var.HTTPNode01_ipv4_address}"
+        ipv4_netmask = "${var.HTTPNode01_ipv4_prefix_length}"
+      }
+
+      ipv4_gateway    = "${var.HTTPNode01_ipv4_gateway}"
+      dns_suffix_list = "${var.HTTPNode01_dns_suffixes}"
+      dns_server_list = "${var.HTTPNode01_dns_servers}"
     }
   }
 
   network_interface {
-    network_id = "${data.vsphere_network.HTTPNode01_network.id}"
+    network_id   = "${data.vsphere_network.HTTPNode01_network.id}"
     adapter_type = "${var.HTTPNode01_adapter_type}"
   }
 
   disk {
-    label = "${var.HTTPNode01-name}.disk0"
-    size = "${var.HTTPNode01_root_disk_size}"
+    label          = "${var.HTTPNode01-name}.disk0"
+    size           = "${var.HTTPNode01_root_disk_size}"
     keep_on_remove = "${var.HTTPNode01_root_disk_keep_on_remove}"
   }
 
   # Specify the connection
   connection {
-    type = "ssh"
-    user = "${var.HTTPNode01-os_admin_user}"
+    type     = "ssh"
+    user     = "${var.HTTPNode01-os_admin_user}"
     password = "${var.HTTPNode01-os_password}"
   }
 
   provisioner "file" {
     destination = "HTTPNode01_add_ssh_key.sh"
-    content     = <<EOF
+
+    content = <<EOF
 # =================================================================
 # Copyright 2017 IBM Corporation
 #
@@ -649,10 +656,9 @@ EOF
   provisioner "remote-exec" {
     inline = [
       "bash -c 'chmod +x HTTPNode01_add_ssh_key.sh'",
-      "bash -c './HTTPNode01_add_ssh_key.sh  \"${var.HTTPNode01-os_admin_user}\" \"${var.user_public_ssh_key}\" \"${var.ibm_pm_public_ssh_key}\">> HTTPNode01_add_ssh_key.log 2>&1'"
+      "bash -c './HTTPNode01_add_ssh_key.sh  \"${var.HTTPNode01-os_admin_user}\" \"${var.user_public_ssh_key}\" \"${var.ibm_pm_public_ssh_key}\">> HTTPNode01_add_ssh_key.log 2>&1'",
     ]
   }
-
 }
 
 #########################################################
@@ -660,12 +666,13 @@ EOF
 #########################################################
 
 resource "camc_bootstrap" "HTTPNode01_chef_bootstrap_comp" {
-  depends_on = ["camc_vaultitem.VaultItem","vsphere_virtual_machine.HTTPNode01"]
-  name = "HTTPNode01_chef_bootstrap_comp"
-  camc_endpoint = "${var.ibm_pm_service}/v1/bootstrap/chef"
-  access_token = "${var.ibm_pm_access_token}"
+  depends_on      = ["camc_vaultitem.VaultItem", "vsphere_virtual_machine.HTTPNode01"]
+  name            = "HTTPNode01_chef_bootstrap_comp"
+  camc_endpoint   = "${var.ibm_pm_service}/v1/bootstrap/chef"
+  access_token    = "${var.ibm_pm_access_token}"
   skip_ssl_verify = true
-  trace = true
+  trace           = true
+
   data = <<EOT
 {
   "os_admin_user": "${var.HTTPNode01-os_admin_user}",
@@ -687,18 +694,18 @@ resource "camc_bootstrap" "HTTPNode01_chef_bootstrap_comp" {
 EOT
 }
 
-
 #########################################################
 ##### Resource : HTTPNode01_httpd24-base-install
 #########################################################
 
 resource "camc_softwaredeploy" "HTTPNode01_httpd24-base-install" {
-  depends_on = ["camc_bootstrap.HTTPNode01_chef_bootstrap_comp"]
-  name = "HTTPNode01_httpd24-base-install"
-  camc_endpoint = "${var.ibm_pm_service}/v1/software_deployment/chef"
-  access_token = "${var.ibm_pm_access_token}"
+  depends_on      = ["camc_bootstrap.HTTPNode01_chef_bootstrap_comp"]
+  name            = "HTTPNode01_httpd24-base-install"
+  camc_endpoint   = "${var.ibm_pm_service}/v1/software_deployment/chef"
+  access_token    = "${var.ibm_pm_access_token}"
   skip_ssl_verify = true
-  trace = true
+  trace           = true
+
   data = <<EOT
 {
   "os_admin_user": "${var.HTTPNode01-os_admin_user}",
@@ -750,18 +757,18 @@ resource "camc_softwaredeploy" "HTTPNode01_httpd24-base-install" {
 EOT
 }
 
-
 #########################################################
 ##### Resource : HTTPNode01_httpd24-ssl-vhosts
 #########################################################
 
 resource "camc_softwaredeploy" "HTTPNode01_httpd24-ssl-vhosts" {
-  depends_on = ["camc_softwaredeploy.HTTPNode01_httpd24-base-install"]
-  name = "HTTPNode01_httpd24-ssl-vhosts"
-  camc_endpoint = "${var.ibm_pm_service}/v1/software_deployment/chef"
-  access_token = "${var.ibm_pm_access_token}"
+  depends_on      = ["camc_softwaredeploy.HTTPNode01_httpd24-base-install"]
+  name            = "HTTPNode01_httpd24-ssl-vhosts"
+  camc_endpoint   = "${var.ibm_pm_service}/v1/software_deployment/chef"
+  access_token    = "${var.ibm_pm_access_token}"
   skip_ssl_verify = true
-  trace = true
+  trace           = true
+
   data = <<EOT
 {
   "os_admin_user": "${var.HTTPNode01-os_admin_user}",
@@ -846,16 +853,16 @@ resource "camc_softwaredeploy" "HTTPNode01_httpd24-ssl-vhosts" {
 EOT
 }
 
-
 #########################################################
 ##### Resource : VaultItem
 #########################################################
 
 resource "camc_vaultitem" "VaultItem" {
-  camc_endpoint = "${var.ibm_pm_service}/v1/vault_item/chef"
-  access_token = "${var.ibm_pm_access_token}"
+  camc_endpoint   = "${var.ibm_pm_service}/v1/vault_item/chef"
+  access_token    = "${var.ibm_pm_access_token}"
   skip_ssl_verify = true
-  trace = true
+  trace           = true
+
   data = <<EOT
 {
   "vault_content": {
