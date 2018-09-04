@@ -1,7 +1,7 @@
 {
     "name": "Apache HTTP Server full deployment on a single virtual machine - IBM",
     "description": "This template deploys Apache HTTP Server with a full configuration on a Linux virtual machine including virtual host conf and enables SSL support.",
-    "version": "2.0",
+    "version": "2.1",
     "imageUrl": "",
     "image": "",
     "type": "chefcontent",
