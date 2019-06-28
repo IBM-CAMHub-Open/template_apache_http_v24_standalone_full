@@ -23,7 +23,6 @@
       }
     },
     "metadata": {
-      "displayName": "Apache HTTP Server full deployment on a single virtual machine",
       "providerDisplayName": "IBM",
       "longDescription": "This template deploys Apache HTTP Server with a full configuration on a Linux virtual machine including virtual host conf and enables SSL support.",
       "bullets": [{
