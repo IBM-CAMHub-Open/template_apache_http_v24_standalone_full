@@ -871,7 +871,6 @@ resource "camc_softwaredeploy" "HTTPNode01_httpd24-ssl-vhosts" {
 }
 EOT
 }
-
 #########################################################
 ##### Resource : VaultItem
 #########################################################

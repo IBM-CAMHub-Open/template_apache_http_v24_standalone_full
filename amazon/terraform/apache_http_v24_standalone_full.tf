@@ -491,7 +491,6 @@ variable "runtime_domain" {
 ##### Resource : HTTPNode01
 #########################################################
 
-
 #Parameter : HTTPNode01_subnet_name
 data "aws_subnet" "HTTPNode01_selected_subnet" {
   filter {
